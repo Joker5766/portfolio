@@ -61,7 +61,7 @@ const Skills = () => {
     >
       {/* Ambient glow */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/3 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[140px]" />
+        <div className="absolute top-1/3 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[220px]" />
       </div>
 
       <motion.div
