@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Global tweaks only – no Tailwind internals touched */
+
+html,
+body {
+  scroll-behavior: smooth;
+  background-color: #0a0a0a;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Optional: scrollbar (safe) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 999px;
+}
