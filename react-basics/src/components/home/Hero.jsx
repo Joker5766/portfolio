@@ -6,7 +6,7 @@ import me from "../../assets/me.png";
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden pt-56 pb-32">
+    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-56 md:pb-32">
       
       {/* ===== SUBTLE GREEN BACKGROUND WASH (FADES OUT COMPLETELY) ===== */}
       <div
@@ -25,20 +25,20 @@ const Hero = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative mx-auto max-w-6xl px-6"
+        className="relative mx-auto max-w-6xl px-4 sm:px-6"
       >
         {/* ================= TEXT ================= */}
         <div className="relative z-10 max-w-xl">
           <motion.p
             variants={fadeUp}
-            className="mb-4 text-sm uppercase tracking-[0.3em] text-gray-400"
+            className="mb-3 text-xs sm:mb-4 sm:text-sm uppercase tracking-[0.3em] text-gray-400"
           >
             Android Developer
           </motion.p>
 
           <motion.h1
             variants={textReveal}
-            className="text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl"
+            className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl"
           >
             Building reliable
             <br />
@@ -49,17 +49,17 @@ const Hero = () => {
 
           <motion.p
             variants={fadeUp}
-            className="mt-6 max-w-lg leading-relaxed text-gray-400"
+            className="mt-4 sm:mt-6 max-w-lg text-sm sm:text-base leading-relaxed text-gray-400"
           >
-            I’m Pranav Chavan, a Computer Science Engineering student focused on
+            I'm Pranav Chavan, a Computer Science Engineering student focused on
             clean architecture, performance, and real-world Android products.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-10 flex gap-4">
+          <motion.div variants={fadeUp} className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href="#projects"
               className="rounded-xl bg-white px-6 py-3 text-sm 
-              font-medium text-black transition hover:bg-gray-200"
+              font-medium text-black transition hover:bg-gray-200 text-center"
             >
               View Projects
             </a>
@@ -67,7 +67,7 @@ const Hero = () => {
             <a
               href="#about"
               className="rounded-xl border border-white/20 px-6 py-3 
-              text-sm font-medium text-white transition hover:bg-white/10"
+              text-sm font-medium text-white transition hover:bg-white/10 text-center"
             >
               About Me
             </a>
@@ -76,8 +76,8 @@ const Hero = () => {
 
         {/* ================= PORTRAIT ================= */}
         <motion.div
-          className="pointer-events-none absolute right-0 top-1/2 
-          -translate-y-1/2 md:right-16"
+          className="pointer-events-none relative mt-12 flex justify-center sm:mt-16 
+          md:absolute md:right-0 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:right-16 md:justify-start"
         >
           {/* ===== ANDROID AURA (FULLY DIES BEFORE HERO END) ===== */}
           <motion.div
@@ -117,7 +117,7 @@ const Hero = () => {
           <motion.img
             src={me}
             alt="Pranav Chavan"
-            className="relative w-[300px] md:w-[330px]"
+            className="relative w-[240px] sm:w-[280px] md:w-[330px]"
             animate={{
               y: [0, -4, 0],
             }}

@@ -6,9 +6,10 @@ import { fadeUp, staggerContainer } from "../../utils/animations";
 const About = () => {
   return (
     <section
-      id="about"
-      className="relative scroll-mt-32 py-24 overflow-hidden"
-    >
+  id="about"
+  className="relative scroll-mt-32 py-20 md:py-24 overflow-hidden"
+>
+
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -27,7 +28,7 @@ const About = () => {
         {/* Heading */}
         <motion.h2
           variants={fadeUp}
-          className="mb-8 max-w-3xl text-3xl font-semibold leading-tight text-white md:text-4xl"
+          className="mb-6 md:mb-8 max-w-3xl text-3xl font-semibold leading-tight text-white md:text-4xl"
         >
           Focused on building Android apps
           <span className="text-green-500/90">
@@ -37,7 +38,7 @@ const About = () => {
         </motion.h2>
 
         {/* Content grid */}
-        <div className="grid gap-10 md:grid-cols-2">
+        <div className="grid gap-8 md:gap-10 md:grid-cols-2">
           <motion.p
             variants={fadeUp}
             className="leading-relaxed text-gray-400"

@@ -5,13 +5,15 @@ const AndroidShowcase = ({ media }) => {
   const { screenshots = [], video } = media;
 
   return (
-    <div className="mt-24 flex justify-center gap-12">
-      {/* LEFT PHONE */}
-      <PhoneFrame size="small">
-        <ScreenshotSlider screenshots={screenshots} />
-      </PhoneFrame>
+    <div className="mt-16 md:mt-24 flex justify-center gap-10 md:gap-12">
+      {/* LEFT PHONE — desktop only */}
+      <div className="hidden md:block">
+        <PhoneFrame size="small">
+          <ScreenshotSlider screenshots={screenshots} />
+        </PhoneFrame>
+      </div>
 
-      {/* CENTER PHONE */}
+      {/* CENTER PHONE — always visible */}
       <PhoneFrame size="large">
         {video ? (
           <video
@@ -27,10 +29,12 @@ const AndroidShowcase = ({ media }) => {
         )}
       </PhoneFrame>
 
-      {/* RIGHT PHONE */}
-      <PhoneFrame size="small">
-        <ScreenshotSlider screenshots={screenshots} />
-      </PhoneFrame>
+      {/* RIGHT PHONE — desktop only */}
+      <div className="hidden md:block">
+        <PhoneFrame size="small">
+          <ScreenshotSlider screenshots={screenshots} />
+        </PhoneFrame>
+      </div>
     </div>
   );
 };

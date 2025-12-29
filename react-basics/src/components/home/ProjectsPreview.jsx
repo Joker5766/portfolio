@@ -9,7 +9,7 @@ const ProjectsPreview = () => {
   return (
     <section
       id="projects"
-      className="scroll-mt-32 py-24"
+      className="scroll-mt-32 py-20 md:py-24"
     >
       <motion.div
         variants={staggerContainer}
@@ -27,7 +27,7 @@ const ProjectsPreview = () => {
 
         <motion.h2
           variants={fadeUp}
-          className="mb-12 text-3xl font-semibold text-white md:text-5xl"
+          className="mb-10 md:mb-12 text-3xl font-semibold text-white md:text-5xl"
         >
           Selected work
         </motion.h2>

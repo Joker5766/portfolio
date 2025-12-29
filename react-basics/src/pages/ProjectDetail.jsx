@@ -52,7 +52,7 @@ const ProjectDetail = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="mx-auto max-w-6xl px-6 py-32"
+        className="mx-auto max-w-6xl px-6 py-20 md:py-32"
       >
         {/* Meta */}
         <motion.p
@@ -99,7 +99,7 @@ const ProjectDetail = () => {
         {/* Divider */}
         <motion.div
           variants={fadeUp}
-          className="my-20 h-px w-24 bg-white/10"
+          className="my-14 md:my-20 h-px w-24 bg-white/10"
         />
 
         {/* Gallery */}
@@ -109,10 +109,10 @@ const ProjectDetail = () => {
 {project.features && (
   <motion.section
     variants={fadeUp}
-    className="mt-32"
+    className="mt-20 md:mt-32"
   >
     {/* Heading */}
-    <h2 className="mb-10 flex items-center gap-3 text-2xl font-semibold text-white">
+    <h2 className="mb-8 md:mb-10 flex items-center gap-3 text-2xl font-semibold text-white">
       <FiLayers className="opacity-70" />
       Key Capabilities
     </h2>
@@ -271,7 +271,7 @@ const ProjectDetail = () => {
 
         {/* Tech Stack */}
         {project.techStack && (
-          <motion.section variants={fadeUp} className="mt-32 max-w-4xl">
+          <motion.section variants={fadeUp} className="mt-20 md:mt-32 max-w-4xl">
             <h2 className="mb-6 flex items-center gap-3 text-2xl font-semibold text-white">
               <FiTool className="opacity-70" />
               Tech Stack
@@ -294,7 +294,7 @@ const ProjectDetail = () => {
 
         {/* Actions */}
         {project.actions && (
-          <motion.div variants={fadeUp} className="mt-36 flex flex-wrap gap-6">
+          <motion.div variants={fadeUp} className="mt-24 md:mt-24 flex flex-wrap gap-6">
             {project.actions.map((action) => {
               let Icon = FiExternalLink;
 

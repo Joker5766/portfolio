@@ -43,7 +43,7 @@ const ProjectCard = ({ project }) => {
       whileInView="rest"
       whileHover="hover"
       viewport={{ once: true }}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-6 backdrop-blur-xl transition-colors hover:border-white/25"
+      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/50 p-5 md:p-6 backdrop-blur-xl transition-colors hover:border-white/25"
     >
       {/* Subtle surface highlight */}
       <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-b from-white/[0.05] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -58,7 +58,7 @@ const ProjectCard = ({ project }) => {
           {project.title}
         </h3>
 
-        <p className="mb-8 text-sm leading-relaxed text-gray-400">
+        <p className="mb-6 md:mb-8 text-sm leading-relaxed text-gray-400">
           {project.shortTagline || project.overview}
         </p>
 

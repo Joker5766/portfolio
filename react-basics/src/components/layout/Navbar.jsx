@@ -1,6 +1,6 @@
 // src/components/layout/Navbar.jsx
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
 const sections = [
@@ -13,6 +13,8 @@ const sections = [
 
 const Navbar = () => {
   const [active, setActive] = useState("about");
+  const [open, setOpen] = useState(false);
+
   const logoRef = useRef(null);
   const [ctaWidth, setCtaWidth] = useState(null);
 
@@ -33,9 +35,7 @@ const Navbar = () => {
           }
         });
       },
-      {
-        rootMargin: "-40% 0px -55% 0px",
-      }
+      { rootMargin: "-40% 0px -55% 0px" }
     );
 
     sections.forEach(({ id }) => {
@@ -65,14 +65,10 @@ const Navbar = () => {
             Pranav Chavan
           </a>
 
-          {/* Links */}
+          {/* Desktop Links (UNCHANGED) */}
           <div className="hidden md:flex items-center gap-8 text-sm">
             {sections.map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className="relative"
-              >
+              <a key={id} href={`#${id}`} className="relative">
                 <motion.span
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
@@ -85,7 +81,6 @@ const Navbar = () => {
                   {label}
                 </motion.span>
 
-                {/* Active underline */}
                 {active === id && (
                   <motion.span
                     layoutId="nav-underline"
@@ -97,16 +92,64 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA */}
+          {/* Desktop CTA (UNCHANGED) */}
           <a
             href="#projects"
             style={{ width: ctaWidth }}
-            className="text-center rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-gray-200 transition whitespace-nowrap"
+            className="hidden md:block text-center rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-gray-200 transition whitespace-nowrap"
           >
             View Work
           </a>
 
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden flex flex-col gap-1"
+            aria-label="Toggle menu"
+          >
+            <span className="h-[2px] w-6 bg-white" />
+            <span className="h-[2px] w-6 bg-white" />
+            <span className="h-[2px] w-6 bg-white" />
+          </button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="md:hidden mt-3 rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl px-6 py-4"
+            >
+              <div className="flex flex-col gap-4 text-sm">
+                {sections.map(({ id, label }) => (
+                  <a
+                    key={id}
+                    href={`#${id}`}
+                    onClick={() => setOpen(false)}
+                    className={`${
+                      active === id
+                        ? "text-white"
+                        : "text-gray-400 hover:text-white"
+                    }`}
+                  >
+                    {label}
+                  </a>
+                ))}
+
+                <a
+                  href="#projects"
+                  onClick={() => setOpen(false)}
+                  className="mt-2 rounded-xl bg-white px-4 py-2 text-center font-medium text-black"
+                >
+                  View Work
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );

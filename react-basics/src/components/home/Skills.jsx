@@ -57,7 +57,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative scroll-mt-32 py-24 overflow-hidden"
+      className="relative scroll-mt-32 py-20 md:py-24 overflow-hidden"
     >
       {/* Ambient glow */}
       <div className="absolute inset-0 -z-10">
@@ -81,13 +81,13 @@ const Skills = () => {
 
         <motion.h2
           variants={fadeUp}
-          className="mb-16 text-3xl font-semibold text-white md:text-5xl"
+          className="mb-12 md:mb-16 text-3xl font-semibold text-white md:text-5xl"
         >
           Tools & systems I work with
         </motion.h2>
 
         {/* Cards */}
-        <div className="grid gap-12">
+        <div className="grid gap-10 md:gap-12">
           {stacks.map((stack, i) => {
             const [powered, setPowered] = useState(false);
 

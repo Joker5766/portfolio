@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
   return (
-    <section id="contact" className="scroll-mt-32 py-24">
+    <section id="contact" className="scroll-mt-32 py-20 md:py-24">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -22,14 +22,18 @@ const Contact = () => {
 
         <motion.h2
           variants={fadeUp}
-          className="mb-14 text-3xl font-semibold text-white md:text-5xl"
+          className="mb-10 md:mb-14 text-3xl font-semibold text-white md:text-5xl"
         >
           Let’s talk
         </motion.h2>
 
-        <div className="grid grid-cols-[280px_1fr] gap-20">
+        {/* GRID */}
+        <div className="grid gap-12 md:grid-cols-[280px_1fr] md:gap-20">
           {/* LEFT SIDE */}
-          <motion.div variants={fadeUp} className="flex flex-col gap-8">
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-col items-start gap-6 md:gap-8"
+          >
             <AndroidBot />
 
             {/* CONTACT LINKS */}
@@ -73,7 +77,7 @@ const Contact = () => {
           {/* RIGHT SIDE – FORM */}
           <motion.form
             variants={fadeUp}
-            className="grid max-w-xl gap-4"
+            className="grid w-full max-w-xl gap-4"
             onSubmit={(e) => e.preventDefault()}
           >
             <input

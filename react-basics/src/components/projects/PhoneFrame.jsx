@@ -1,9 +1,9 @@
 const sizes = {
-  small: "w-[280px] aspect-[9/19.5] rounded-[28px] scale-95",
-  large: "w-[280px] aspect-[9/19.5] rounded-[28px] scale-110",
+  small:
+    "w-[220px] sm:w-[260px] md:w-[280px] aspect-[9/19.5] rounded-[28px] scale-100 md:scale-95",
+  large:
+    "w-[240px] sm:w-[280px] md:w-[300px] aspect-[9/19.5] rounded-[28px] scale-100 md:scale-110",
 };
-
-
 
 const PhoneFrame = ({ children, size = "small" }) => {
   return (
@@ -33,7 +33,6 @@ const PhoneFrame = ({ children, size = "small" }) => {
       {/* Volume buttons */}
       <div className="absolute left-[-2px] top-24 h-10 w-[3px] rounded-full bg-gradient-to-b from-white/40 to-white/10 shadow-md" />
       <div className="absolute left-[-2px] top-38 h-10 w-[3px] rounded-full bg-gradient-to-b from-white/40 to-white/10 shadow-md" />
-
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Philosophy = () => {
   return (
     <section
       id="philosophy"
-      className="relative scroll-mt-32 py-28 overflow-hidden"
+      className="relative scroll-mt-32 py-20 md:py-28 overflow-hidden"
     >
       {/* Ambient backdrop */}
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -48,7 +48,7 @@ const Philosophy = () => {
 
         <motion.h2
   variants={fadeUp}
-  className="mb-16 text-3xl font-semibold text-white md:text-5xl"
+  className="mb-12 md:mb-16 text-3xl font-semibold text-white md:text-5xl"
 >
   How I think about building software
 </motion.h2>
@@ -60,7 +60,7 @@ const Philosophy = () => {
           <div className="max-w-xl">
             <motion.div
               variants={fadeUp}
-              className="mb-8 h-px w-20 bg-white/10"
+              className="mb-6 md:mb-8 h-px w-20 bg-white/10"
             />
 
             <motion.p
@@ -82,7 +82,7 @@ const Philosophy = () => {
             <motion.p
               variants={fadeUp}
               transition={{ delay: 0.45 }}
-              className="mt-10 text-sm tracking-wide text-gray-500"
+              className="mt-8 md:mt-10 text-sm tracking-wide text-gray-500"
             >
               Less noise. More intent.
             </motion.p>
