@@ -69,7 +69,7 @@ export const projects = [
       {
         label: "Get it on Play Store",
         type: "primary",
-        url: "https://dummy-playstore-link.com",
+        url: "https://play.google.com/store/apps/details?id=com.jokerdev.lazynotes",
       },
     ],
 
@@ -127,7 +127,7 @@ export const projects = [
       {
         label: "View GitHub Repository",
         type: "secondary",
-        url: "https://dummy-github-link.com",
+        url: "https://github.com/Joker5766/GoConvert",
       },
     ],
 
