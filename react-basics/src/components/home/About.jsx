@@ -48,17 +48,15 @@ const About = () => {
               Pranav Chavan
             </span>
             , a Computer Science Engineering student specializing in Android
-            development. I enjoy building applications that people actually use
-            ,from productivity tools to experimental augmented reality systems.
+            development. I enjoy building applications with practical use cases across everyday and problem-focused domains and scenarios as intended.
           </motion.p>
 
           <motion.p
             variants={fadeUp}
             className="leading-relaxed text-gray-400"
           >
-            I mostly work solo, handling everything end-to-end, architecture,
-            UI/UX, business logic, and deployment. My focus is clean design,
-            practical features, and systems that scale without breaking.
+            I’ve worked primarily on projects where I handled the full development cycle, from architecture and UI/UX to business logic and deployment. My focus is clean design, practical features, and systems that remain stable as they grow.
+
           </motion.p>
         </div>
       </motion.div>

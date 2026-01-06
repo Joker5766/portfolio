@@ -105,169 +105,169 @@ const ProjectDetail = () => {
         {/* Gallery */}
         <ProjectGallery media={project.media} />
 
-{/* Key Features — custom layout */}
-{project.features && (
-  <motion.section
-    variants={fadeUp}
-    className="mt-20 md:mt-32"
-  >
-    {/* Heading */}
-    <h2 className="mb-8 md:mb-10 flex items-center gap-3 text-2xl font-semibold text-white">
-      <FiLayers className="opacity-70" />
-      Key Capabilities
-    </h2>
+        {/* Key Features — custom layout */}
+        {project.features && (
+          <motion.section
+            variants={fadeUp}
+            className="mt-20 md:mt-32"
+          >
+            {/* Heading */}
+            <h2 className="mb-8 md:mb-10 flex items-center gap-3 text-2xl font-semibold text-white">
+              <FiLayers className="opacity-70" />
+              Key Capabilities
+            </h2>
 
-    <div className="flex flex-col gap-6 sm:flex-row sm:gap-6">
-      {/* Left column */}
-      <div className="flex flex-col gap-6 sm:w-1/2">
-        {project.features
-          .filter((_, i) => i % 2 === 0)
-          .map((feature, i) => {
-            const realIndex = i * 2;
-            const isOpen = expandedIndex === realIndex;
+            <div className="flex flex-col gap-6 sm:flex-row sm:gap-6">
+              {/* Left column */}
+              <div className="flex flex-col gap-6 sm:w-1/2">
+                {project.features
+                  .filter((_, i) => i % 2 === 0)
+                  .map((feature, i) => {
+                    const realIndex = i * 2;
+                    const isOpen = expandedIndex === realIndex;
 
-            return (
-              <motion.div
-                key={realIndex}
-                layout
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  ease: [0.22, 1, 0.36, 1],
-                  layout: { duration: 0.45 },
-                }}
-                onClick={() =>
-                  setExpandedIndex(isOpen ? null : realIndex)
-                }
-                className="relative cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition hover:border-white/20"
-              >
-                <span className="absolute right-5 top-5 text-xs text-white/20">
-                  {String(realIndex + 1).padStart(2, "0")}
-                </span>
+                    return (
+                      <motion.div
+                        key={realIndex}
+                        layout
+                        initial={{ opacity: 0, y: 14 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.45,
+                          ease: [0.22, 1, 0.36, 1],
+                          layout: { duration: 0.45 },
+                        }}
+                        onClick={() =>
+                          setExpandedIndex(isOpen ? null : realIndex)
+                        }
+                        className="relative cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition hover:border-white/20"
+                      >
+                        <span className="absolute right-5 top-5 text-xs text-white/20">
+                          {String(realIndex + 1).padStart(2, "0")}
+                        </span>
 
-                <p className="text-sm font-medium text-white">
-                  {feature.title}
-                </p>
+                        <p className="text-sm font-medium text-white">
+                          {feature.title}
+                        </p>
 
-                <AnimatePresence initial={false}>
-  {isOpen && (
-    <motion.p
-      layout
-      initial={{
-        opacity: 0,
-        height: 0,
-      }}
-      animate={{
-        opacity: 1,
-        height: "auto",
-      }}
-      exit={{
-        opacity: 0,
-        height: 0,
-      }}
-      transition={{
-        height: {
-          duration: 0.4,
-          ease: [0.22, 1, 0.36, 1],
-        },
-        opacity: {
-          duration: 0.25,
-          ease: "easeOut",
-        },
-      }}
-      style={{
-        transformOrigin: "top",
-      }}
-      className="mt-3 overflow-hidden text-sm leading-relaxed text-gray-300"
-    >
-      {feature.description}
-    </motion.p>
-  )}
-</AnimatePresence>
-              </motion.div>
-            );
-          })}
-      </div>
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.p
+                              layout
+                              initial={{
+                                opacity: 0,
+                                height: 0,
+                              }}
+                              animate={{
+                                opacity: 1,
+                                height: "auto",
+                              }}
+                              exit={{
+                                opacity: 0,
+                                height: 0,
+                              }}
+                              transition={{
+                                height: {
+                                  duration: 0.4,
+                                  ease: [0.22, 1, 0.36, 1],
+                                },
+                                opacity: {
+                                  duration: 0.25,
+                                  ease: "easeOut",
+                                },
+                              }}
+                              style={{
+                                transformOrigin: "top",
+                              }}
+                              className="mt-3 overflow-hidden text-sm leading-relaxed text-gray-300"
+                            >
+                              {feature.description}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    );
+                  })}
+              </div>
 
-      {/* Right column */}
-      <div className="flex flex-col gap-6 sm:w-1/2">
-        {project.features
-          .filter((_, i) => i % 2 === 1)
-          .map((feature, i) => {
-            const realIndex = i * 2 + 1;
-            const isOpen = expandedIndex === realIndex;
+              {/* Right column */}
+              <div className="flex flex-col gap-6 sm:w-1/2">
+                {project.features
+                  .filter((_, i) => i % 2 === 1)
+                  .map((feature, i) => {
+                    const realIndex = i * 2 + 1;
+                    const isOpen = expandedIndex === realIndex;
 
-            return (
-              <motion.div
-                key={realIndex}
-                layout
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.45,
-                  ease: [0.22, 1, 0.36, 1],
-                  layout: { duration: 0.45 },
-                }}
-                onClick={() =>
-                  setExpandedIndex(isOpen ? null : realIndex)
-                }
-                className="relative cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition hover:border-white/20"
-              >
-                <span className="absolute right-5 top-5 text-xs text-white/20">
-                  {String(realIndex + 1).padStart(2, "0")}
-                </span>
+                    return (
+                      <motion.div
+                        key={realIndex}
+                        layout
+                        initial={{ opacity: 0, y: 14 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.45,
+                          ease: [0.22, 1, 0.36, 1],
+                          layout: { duration: 0.45 },
+                        }}
+                        onClick={() =>
+                          setExpandedIndex(isOpen ? null : realIndex)
+                        }
+                        className="relative cursor-pointer rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur transition hover:border-white/20"
+                      >
+                        <span className="absolute right-5 top-5 text-xs text-white/20">
+                          {String(realIndex + 1).padStart(2, "0")}
+                        </span>
 
-                <p className="text-sm font-medium text-white">
-                  {feature.title}
-                </p>
+                        <p className="text-sm font-medium text-white">
+                          {feature.title}
+                        </p>
 
-<AnimatePresence initial={false}>
-  {isOpen && (
-    <motion.p
-      layout
-      initial={{
-        opacity: 0,
-        height: 0,
-      }}
-      animate={{
-        opacity: 1,
-        height: "auto",
-      }}
-      exit={{
-        opacity: 0,
-        height: 0,
-      }}
-      transition={{
-        height: {
-          duration: 0.4,
-          ease: [0.22, 1, 0.36, 1],
-        },
-        opacity: {
-          duration: 0.25,
-          ease: "easeOut",
-        },
-      }}
-      style={{
-        transformOrigin: "top",
-      }}
-      className="mt-3 overflow-hidden text-sm leading-relaxed text-gray-300"
-    >
-      {feature.description}
-    </motion.p>
-  )}
-</AnimatePresence>
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.p
+                              layout
+                              initial={{
+                                opacity: 0,
+                                height: 0,
+                              }}
+                              animate={{
+                                opacity: 1,
+                                height: "auto",
+                              }}
+                              exit={{
+                                opacity: 0,
+                                height: 0,
+                              }}
+                              transition={{
+                                height: {
+                                  duration: 0.4,
+                                  ease: [0.22, 1, 0.36, 1],
+                                },
+                                opacity: {
+                                  duration: 0.25,
+                                  ease: "easeOut",
+                                },
+                              }}
+                              style={{
+                                transformOrigin: "top",
+                              }}
+                              className="mt-3 overflow-hidden text-sm leading-relaxed text-gray-300"
+                            >
+                              {feature.description}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
 
 
-              </motion.div>
-            );
-          })}
-      </div>
-    </div>
-  </motion.section>
-)}
+                      </motion.div>
+                    );
+                  })}
+              </div>
+            </div>
+          </motion.section>
+        )}
 
         {/* Tech Stack */}
         {project.techStack && (
@@ -304,6 +304,21 @@ const ProjectDetail = () => {
                 Icon = FiGithub;
               }
 
+              if (!action.url) {
+                return (
+                  <motion.button
+                    key={action.label}
+                    type="button"
+                    disabled
+                    className={`inline-flex cursor-not-allowed items-center gap-3 rounded-xl px-7 py-3 text-sm font-medium
+        bg-white/10 text-gray-400`}
+                  >
+                    <Icon className="text-lg opacity-60" />
+                    {action.label}
+                  </motion.button>
+                );
+              }
+
               return (
                 <motion.a
                   key={action.label}
@@ -313,10 +328,9 @@ const ProjectDetail = () => {
                   whileHover={{ y: -3 }}
                   transition={{ type: "spring", stiffness: 200, damping: 18 }}
                   className={`group inline-flex items-center gap-3 rounded-xl px-7 py-3 text-sm font-medium transition
-                    ${
-                      action.type === "primary"
-                        ? "bg-white text-black hover:bg-gray-200"
-                        : "border border-white/20 text-white hover:border-white/40 hover:bg-white/[0.04]"
+      ${action.type === "primary"
+                      ? "bg-white text-black hover:bg-gray-200"
+                      : "border border-white/20 text-white hover:border-white/40 hover:bg-white/[0.04]"
                     }`}
                 >
                   <Icon className="text-lg opacity-90" />
@@ -326,6 +340,7 @@ const ProjectDetail = () => {
                   </span>
                 </motion.a>
               );
+
             })}
           </motion.div>
         )}

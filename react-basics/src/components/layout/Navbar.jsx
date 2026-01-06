@@ -72,11 +72,10 @@ const Navbar = () => {
                 <motion.span
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
-                  className={`transition ${
-                    active === id
+                  className={`transition ${active === id
                       ? "text-white"
                       : "text-gray-400 hover:text-white"
-                  }`}
+                    }`}
                 >
                   {label}
                 </motion.span>
@@ -101,16 +100,43 @@ const Navbar = () => {
             View Work
           </a>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="md:hidden flex flex-col gap-1"
-            aria-label="Toggle menu"
-          >
-            <span className="h-[2px] w-6 bg-white" />
-            <span className="h-[2px] w-6 bg-white" />
-            <span className="h-[2px] w-6 bg-white" />
-          </button>
+{/* Mobile Hamburger */}
+<button
+  onClick={() => setOpen((v) => !v)}
+  className="md:hidden relative h-6 w-6"
+  aria-label="Toggle menu"
+>
+  {/* Top line */}
+  <motion.span
+    animate={{
+      rotate: open ? 45 : 0,
+      y: open ? 0 : -6,
+    }}
+    transition={{ duration: 0.25, ease: "easeInOut" }}
+    className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+  />
+
+  {/* Middle line */}
+  <motion.span
+    animate={{
+      opacity: open ? 0 : 1,
+    }}
+    transition={{ duration: 0.2, ease: "easeInOut" }}
+    className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+  />
+
+  {/* Bottom line */}
+  <motion.span
+    animate={{
+      rotate: open ? -45 : 0,
+      y: open ? 0 : 6,
+    }}
+    transition={{ duration: 0.25, ease: "easeInOut" }}
+    className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+  />
+</button>
+
+
         </div>
 
         {/* Mobile Menu */}
@@ -129,11 +155,10 @@ const Navbar = () => {
                     key={id}
                     href={`#${id}`}
                     onClick={() => setOpen(false)}
-                    className={`${
-                      active === id
+                    className={`${active === id
                         ? "text-white"
                         : "text-gray-400 hover:text-white"
-                    }`}
+                      }`}
                   >
                     {label}
                   </a>

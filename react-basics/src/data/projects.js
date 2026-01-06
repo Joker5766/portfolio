@@ -9,6 +9,7 @@ import go1 from "../assets/goconverter/1.jpeg";
 import go2 from "../assets/goconverter/2.jpeg";
 import go3 from "../assets/goconverter/3.jpeg";
 
+
 export const projects = [
   {
     id: "lazynotes",
@@ -60,7 +61,7 @@ export const projects = [
     media: {
       type: "android",
       screenshots: [lazy1, lazy2, lazy3, lazy4],
-      video: null,
+      video: "/videos/lazynotes-demoo.webm",
     },
 
     badges: ["Android App", "Play Store"],
@@ -118,7 +119,7 @@ export const projects = [
     media: {
       type: "android",
       screenshots: [go1, go2, go3],
-      video: null,
+      video: "/videos/goconvert-demo.webm",
     },
 
     badges: ["Android App", "Open Source"],
@@ -127,7 +128,7 @@ export const projects = [
       {
         label: "View GitHub Repository",
         type: "secondary",
-        url: "https://github.com/Joker5766/GoConvert",
+        url: "https://github.com/Joker5766/GoConvert.git",
       },
     ],
 
@@ -190,9 +191,9 @@ export const projects = [
 
     actions: [
       {
-        label: "View Live Website",
+        label: "Coming soon...",
         type: "primary",
-        url: "https://istylear.netlify.app/",
+        url: null,
       },
     ],
 

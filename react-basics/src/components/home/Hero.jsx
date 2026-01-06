@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer, textReveal } from "../../utils/animations";
-import me from "../../assets/me.png";
+import me from "../../assets/me.webp";
 
 const Hero = () => {
   return (
     <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-56 md:pb-32">
-      
+
       {/* ===== SUBTLE GREEN BACKGROUND WASH (FADES OUT COMPLETELY) ===== */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -30,11 +30,26 @@ const Hero = () => {
         {/* ================= TEXT ================= */}
         <div className="relative z-10 max-w-xl">
           <motion.p
-            variants={fadeUp}
-            className="mb-3 text-xs sm:mb-4 sm:text-sm uppercase tracking-[0.3em] text-gray-400"
-          >
-            Android Developer
-          </motion.p>
+  variants={fadeUp}
+  className="
+    mb-3 sm:mb-4
+    inline-flex flex-wrap items-center gap-3
+    text-[10px] sm:text-sm
+    uppercase
+    tracking-[0.2em] sm:tracking-[0.3em]
+    text-gray-400
+  "
+>
+  <span>Pranav Chavan</span>
+
+  <span
+    aria-hidden
+    className="h-3 w-px bg-gray-400/40"
+  ></span>
+
+  <span className="opacity-90">Android Developer</span>
+</motion.p>
+
 
           <motion.h1
             variants={textReveal}
@@ -51,8 +66,7 @@ const Hero = () => {
             variants={fadeUp}
             className="mt-4 sm:mt-6 max-w-lg text-sm sm:text-base leading-relaxed text-gray-400"
           >
-            I'm Pranav Chavan, a Computer Science Engineering student focused on
-            clean architecture, performance, and real-world Android products.
+            I focus on clean architecture, predictable behavior, and long-term maintainability.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -117,6 +131,8 @@ const Hero = () => {
           <motion.img
             src={me}
             alt="Pranav Chavan"
+            fetchPriority="high"
+            loading="eager"
             className="relative w-[240px] sm:w-[280px] md:w-[330px]"
             animate={{
               y: [0, -4, 0],

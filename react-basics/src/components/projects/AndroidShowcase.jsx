@@ -7,7 +7,7 @@ const AndroidShowcase = ({ media }) => {
   return (
     <div className="mt-16 md:mt-24 flex justify-center gap-10 md:gap-12">
       {/* LEFT PHONE — desktop only */}
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <PhoneFrame size="small">
           <ScreenshotSlider screenshots={screenshots} />
         </PhoneFrame>
@@ -30,7 +30,7 @@ const AndroidShowcase = ({ media }) => {
       </PhoneFrame>
 
       {/* RIGHT PHONE — desktop only */}
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <PhoneFrame size="small">
           <ScreenshotSlider screenshots={screenshots} />
         </PhoneFrame>
