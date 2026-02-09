@@ -21,3 +21,15 @@ body {
   background: #2a2a2a;
   border-radius: 999px;
 }
+
+@keyframes arrow-diagonal {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(4px, -4px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

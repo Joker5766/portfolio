@@ -9,11 +9,11 @@ import Footer from "./components/layout/Footer";
 const App = () => {
   return (
     <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/projects/:id" element={<ProjectDetail />} />
-  </Routes>
-</BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
+      </Routes>
+    </BrowserRouter>
 
   );
 };

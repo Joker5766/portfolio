@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const sections = [
   { id: "about", label: "About" },
@@ -73,8 +74,8 @@ const Navbar = () => {
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}
                   className={`transition ${active === id
-                      ? "text-white"
-                      : "text-gray-400 hover:text-white"
+                    ? "text-white"
+                    : "text-gray-400 hover:text-white"
                     }`}
                 >
                   {label}
@@ -91,50 +92,78 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Desktop CTA (UNCHANGED) */}
-          <a
-            href="#projects"
-            style={{ width: ctaWidth }}
-            className="hidden md:block text-center rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-gray-200 transition whitespace-nowrap"
-          >
-            View Work
-          </a>
 
-{/* Mobile Hamburger */}
-<button
-  onClick={() => setOpen((v) => !v)}
-  className="md:hidden relative h-6 w-6"
-  aria-label="Toggle menu"
+
+<a
+  href="/Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ width: ctaWidth }}
+  className="
+    group
+    hidden md:inline-flex items-center justify-center gap-2
+    rounded-xl
+    border border-white/15
+    px-5 py-2.5
+    text-sm font-medium text-gray-200
+    transition-all duration-300
+    hover:border-green-500/50
+    hover:text-white
+    hover:bg-white/[0.04]
+    active:scale-[0.97]
+    whitespace-nowrap
+  "
 >
-  {/* Top line */}
-  <motion.span
-    animate={{
-      rotate: open ? 45 : 0,
-      y: open ? 0 : -6,
-    }}
-    transition={{ duration: 0.25, ease: "easeInOut" }}
-    className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
-  />
+  <span>Resume</span>
 
-  {/* Middle line */}
-  <motion.span
-    animate={{
-      opacity: open ? 0 : 1,
-    }}
-    transition={{ duration: 0.2, ease: "easeInOut" }}
-    className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+  <FiArrowUpRight
+    className="
+      text-base
+      opacity-70
+      transition-colors duration-300
+      group-hover:text-green-400
+      group-hover:animate-[arrow-diagonal_1.2s_ease-in-out_infinite]
+    "
   />
+</a>
 
-  {/* Bottom line */}
-  <motion.span
-    animate={{
-      rotate: open ? -45 : 0,
-      y: open ? 0 : 6,
-    }}
-    transition={{ duration: 0.25, ease: "easeInOut" }}
-    className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
-  />
-</button>
+
+
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="md:hidden relative h-6 w-6"
+            aria-label="Toggle menu"
+          >
+            {/* Top line */}
+            <motion.span
+              animate={{
+                rotate: open ? 45 : 0,
+                y: open ? 0 : -6,
+              }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+            />
+
+            {/* Middle line */}
+            <motion.span
+              animate={{
+                opacity: open ? 0 : 1,
+              }}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+            />
+
+            {/* Bottom line */}
+            <motion.span
+              animate={{
+                rotate: open ? -45 : 0,
+                y: open ? 0 : 6,
+              }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="absolute top-1/2 left-0 h-[2px] w-6 bg-white"
+            />
+          </button>
 
 
         </div>
@@ -156,21 +185,37 @@ const Navbar = () => {
                     href={`#${id}`}
                     onClick={() => setOpen(false)}
                     className={`${active === id
-                        ? "text-white"
-                        : "text-gray-400 hover:text-white"
+                      ? "text-white"
+                      : "text-gray-400 hover:text-white"
                       }`}
                   >
                     {label}
                   </a>
                 ))}
 
-                <a
-                  href="#projects"
-                  onClick={() => setOpen(false)}
-                  className="mt-2 rounded-xl bg-white px-4 py-2 text-center font-medium text-black"
-                >
-                  View Work
-                </a>
+              
+<a
+  href="/Resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => setOpen(false)}
+  className="
+    mt-2 flex items-center justify-center gap-2
+    rounded-xl
+    border border-white/20
+    bg-white/[0.04]
+    px-4 py-3
+    text-sm font-medium text-white
+    transition-all duration-200
+    active:scale-[0.97]
+  "
+>
+  <span>Resume</span>
+
+  <FiArrowUpRight className="text-base opacity-80" />
+</a>
+
+
               </div>
             </motion.div>
           )}
