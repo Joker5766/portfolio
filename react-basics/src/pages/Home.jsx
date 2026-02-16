@@ -17,13 +17,17 @@ const Home = () => {
       <Navbar />
       <PageWrapper>
         <Hero />
-        <About />
-        <Skills />
-        <ProjectsPreview />
-        <Philosophy />
-        <Contact />
+
+        {/* Content slides OVER the sticky hero */}
+        <div className="relative z-10 bg-[#0a0a0a]">
+          <About />
+          <Skills />
+          <ProjectsPreview />
+          <Philosophy />
+          <Contact />
+          <Footer />
+        </div>
       </PageWrapper>
-      <Footer />
     </>
   );
 };

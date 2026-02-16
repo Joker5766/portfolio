@@ -15,6 +15,7 @@ const sections = [
 const Navbar = () => {
   const [active, setActive] = useState("about");
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const logoRef = useRef(null);
   const [ctaWidth, setCtaWidth] = useState(null);
@@ -24,6 +25,21 @@ const Navbar = () => {
     if (logoRef.current) {
       setCtaWidth(logoRef.current.offsetWidth);
     }
+  }, []);
+
+  /* Scroll Listener for Navbar Style */
+  useEffect(() => {
+    const handleScroll = () => {
+      // Toggle scrolled state based on scroll position
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   /* Active section observer */
@@ -52,10 +68,18 @@ const Navbar = () => {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 w-full z-50"
+      className="fixed top-0 left-0 w-full z-50 pointer-events-none"
     >
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mt-4 flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 px-6 py-4 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-6 pointer-events-auto">
+        <motion.div
+          animate={{
+            backgroundColor: isScrolled ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,0)",
+            borderColor: isScrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0)",
+            backdropFilter: isScrolled ? "blur(12px)" : "blur(0px)",
+          }}
+          transition={{ duration: 0.4 }}
+          className="mt-4 flex items-center justify-between rounded-2xl border px-6 py-4"
+        >
 
           {/* Logo */}
           <a
@@ -94,12 +118,12 @@ const Navbar = () => {
 
 
 
-<a
-  href="/Resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{ width: ctaWidth }}
-  className="
+          <a
+            href="/Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ width: ctaWidth }}
+            className="
     group
     hidden md:inline-flex items-center justify-center gap-2
     rounded-xl
@@ -113,19 +137,19 @@ const Navbar = () => {
     active:scale-[0.97]
     whitespace-nowrap
   "
->
-  <span>Resume</span>
+          >
+            <span>Resume</span>
 
-  <FiArrowUpRight
-    className="
+            <FiArrowUpRight
+              className="
       text-base
       opacity-70
       transition-colors duration-300
       group-hover:text-green-400
       group-hover:animate-[arrow-diagonal_1.2s_ease-in-out_infinite]
     "
-  />
-</a>
+            />
+          </a>
 
 
 
@@ -166,7 +190,7 @@ const Navbar = () => {
           </button>
 
 
-        </div>
+        </motion.div>
 
         {/* Mobile Menu */}
         <AnimatePresence>
@@ -193,13 +217,13 @@ const Navbar = () => {
                   </a>
                 ))}
 
-              
-<a
-  href="/Resume.pdf"
-  target="_blank"
-  rel="noopener noreferrer"
-  onClick={() => setOpen(false)}
-  className="
+
+                <a
+                  href="/Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
+                  className="
     mt-2 flex items-center justify-center gap-2
     rounded-xl
     border border-white/20
@@ -209,11 +233,11 @@ const Navbar = () => {
     transition-all duration-200
     active:scale-[0.97]
   "
->
-  <span>Resume</span>
+                >
+                  <span>Resume</span>
 
-  <FiArrowUpRight className="text-base opacity-80" />
-</a>
+                  <FiArrowUpRight className="text-base opacity-80" />
+                </a>
 
 
               </div>

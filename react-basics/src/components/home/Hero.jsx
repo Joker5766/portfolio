@@ -1,154 +1,121 @@
 // src/components/home/Hero.jsx
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { fadeUp, staggerContainer, textReveal } from "../../utils/animations";
 import me from "../../assets/me.webp";
 
 const Hero = () => {
-  return (
-    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-56 md:pb-32">
+  const { scrollY } = useScroll();
+  // Smoother transition: extended range from 500 to 700px
+  const opacity = useTransform(scrollY, [0, 700], [1, 0]);
+  const scale = useTransform(scrollY, [0, 700], [1, 0.95]);
+  const y = useTransform(scrollY, [0, 700], [0, 100]);
 
-      {/* ===== SUBTLE GREEN BACKGROUND WASH (FADES OUT COMPLETELY) ===== */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(circle at 70% 40%, rgba(34,197,94,0.08), transparent 60%)",
-          maskImage:
-            "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
-        }}
-      />
+  return (
+    <section className="sticky top-0 h-screen z-0 flex items-center justify-center overflow-hidden bg-[#050505]">
+
+      {/* ===== DYNAMIC MESH BACKGROUND ===== */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        style={{ opacity }}
+      >
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-green-500/5 blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/5 blur-[120px] animate-pulse delay-1000" />
+
+        {/* Subtle grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: "linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)",
+            backgroundSize: "64px 64px"
+          }}
+        />
+      </motion.div>
 
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative mx-auto max-w-6xl px-4 sm:px-6"
+        style={{ opacity, scale, y }}
+        className="relative mx-auto max-w-6xl px-4 sm:px-6 w-full"
       >
         {/* ================= TEXT ================= */}
-        <div className="relative z-10 max-w-xl">
+        <div className="relative z-10 max-w-2xl">
           <motion.p
-  variants={fadeUp}
-  className="
-    mb-3 sm:mb-4
-    inline-flex flex-wrap items-center gap-3
-    text-[10px] sm:text-sm
-    uppercase
-    tracking-[0.2em] sm:tracking-[0.3em]
-    text-gray-400
-  "
->
-  <span>Pranav Chavan</span>
-
-  <span
-    aria-hidden
-    className="h-3 w-px bg-gray-400/40"
-  ></span>
-
-  <span className="opacity-90">Android Developer</span>
-</motion.p>
-
+            variants={fadeUp}
+            className="
+              mb-4 sm:mb-6
+              inline-flex flex-wrap items-center gap-3
+              text-xs sm:text-sm
+              uppercase
+              tracking-[0.2em] sm:tracking-[0.3em]
+              text-green-400/80 font-medium
+            "
+          >
+            <span>Pranav Chavan</span>
+            <span aria-hidden className="h-0.5 w-6 bg-green-500/50"></span>
+            <span className="text-gray-400">Android Developer</span>
+          </motion.p>
 
           <motion.h1
             variants={textReveal}
-            className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight text-white md:text-6xl"
+            className="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl mb-6"
           >
-            Building reliable
-            <br />
-            <span className="text-green-500/90">
-              Android applications
+            Engineering <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
+              Reliable Systems
             </span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="mt-4 sm:mt-6 max-w-lg text-sm sm:text-base leading-relaxed text-gray-400"
+            className="mt-6 max-w-lg text-base sm:text-lg leading-relaxed text-gray-400 font-light"
           >
-            I focus on clean architecture, predictable behavior, and long-term maintainability.
+            I build Android applications that prioritize clean architecture,
+            predictable state management, and long-term maintainability.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <motion.div variants={fadeUp} className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4">
             <a
               href="#projects"
-              className="rounded-xl bg-white px-6 py-3 text-sm 
-              font-medium text-black transition hover:bg-gray-200 text-center"
+              className="group relative px-8 py-4 bg-white text-black text-sm font-semibold rounded-full overflow-hidden transition-transform hover:scale-105"
             >
-              View Projects
+              <span className="relative z-10">View Projects</span>
+              <div className="absolute inset-0 bg-gray-200 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </a>
 
             <a
-              href="#about"
-              className="rounded-xl border border-white/20 px-6 py-3 
-              text-sm font-medium text-white transition hover:bg-white/10 text-center"
+              href="#contact"
+              className="px-8 py-4 border border-white/20 text-white text-sm font-semibold rounded-full hover:bg-white/5 transition-colors text-center"
             >
-              About Me
+              Contact Me
             </a>
           </motion.div>
         </div>
 
-        {/* ================= PORTRAIT ================= */}
+        {/* ================= PORTRAIT / VISUAL ================= */}
         <motion.div
-          className="pointer-events-none relative mt-12 flex justify-center sm:mt-16 
-          md:absolute md:right-0 md:top-1/2 md:mt-0 md:-translate-y-1/2 md:right-16 md:justify-start"
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 mr-[-50px] sm:mr-[-100px] lg:mr-[-100px]"
+          style={{ opacity: 0.8 }}
         >
-          {/* ===== ANDROID AURA (FULLY DIES BEFORE HERO END) ===== */}
-          <motion.div
-            className="absolute inset-[-60%]"
-            animate={{
-              scale: [1, 1.08, 1],
-              opacity: [0.12, 0.18, 0.12],
-            }}
-            transition={{
-              duration: 18,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              background:
-                "radial-gradient(circle at 50% 40%, rgba(34,197,94,0.22), transparent 65%)",
-              filter: "blur(140px)",
-              maskImage:
-                "linear-gradient(to bottom, black 0%, black 45%, rgba(0,0,0,0.25) 65%, transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, black 0%, black 45%, rgba(0,0,0,0.25) 65%, transparent 100%)",
-            }}
-          />
+          {/* Abstract circular representation of 'System' instead of just a photo */}
+          <div className="relative w-[300px] h-[300px] sm:w-[500px] sm:h-[500px]">
+            <div className="absolute inset-0 border border-green-500/20 rounded-full animate-[spin_60s_linear_infinite]" />
+            <div className="absolute inset-8 border border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+            <div className="absolute inset-16 border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
 
-          {/* ===== VERY SOFT GROUND SHADOW ===== */}
-          <div
-            className="absolute bottom-[-28px] left-1/2 h-16 w-44 
-            -translate-x-1/2 rounded-full"
-            style={{
-              background:
-                "radial-gradient(ellipse, rgba(0,0,0,0.4), transparent 70%)",
-              filter: "blur(20px)",
-            }}
-          />
-
-          {/* ===== PORTRAIT ===== */}
-          <motion.img
-            src={me}
-            alt="Pranav Chavan"
-            fetchPriority="high"
-            loading="eager"
-            className="relative w-[240px] sm:w-[280px] md:w-[330px]"
-            animate={{
-              y: [0, -4, 0],
-            }}
-            transition={{
-              duration: 14,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            style={{
-              maskImage:
-                "linear-gradient(to top, transparent 0%, rgba(0,0,0,0.18) 38%, black 68%)",
-              WebkitMaskImage:
-                "linear-gradient(to top, transparent 0%, rgba(0,0,0,0.18) 38%, black 68%)",
-            }}
-          />
+            <motion.img
+              src={me}
+              alt="Pranav Chavan"
+              className="absolute inset-0 m-auto w-[200px] sm:w-[320px] rounded-full"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                maskImage: "linear-gradient(to bottom, black 80%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, black 80%, transparent 100%)"
+              }}
+            />
+          </div>
         </motion.div>
       </motion.div>
     </section>

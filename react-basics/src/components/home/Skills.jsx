@@ -15,7 +15,7 @@ const stacks = [
     ],
   },
   {
-    title: "Architecture & Background Work",
+    title: "Architecture & Background",
     description: "How apps stay reliable beyond the UI and foreground.",
     items: [
       { name: "ViewModel", icon: "https://cdn.simpleicons.org/android/3DDC84" },
@@ -57,11 +57,11 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative scroll-mt-32 py-20 md:py-24 overflow-hidden"
+      className="relative scroll-mt-32 py-20 md:py-32 overflow-hidden"
     >
       {/* Ambient glow */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/3 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-[220px]" />
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/5 blur-[200px]" />
       </div>
 
       <motion.div
@@ -71,23 +71,18 @@ const Skills = () => {
         viewport={{ once: true }}
         className="mx-auto max-w-6xl px-6"
       >
-        {/* Header */}
-        <motion.p
-          variants={fadeUp}
-          className="mb-4 text-sm uppercase tracking-[0.35em] text-gray-400"
-        >
-          Skills
-        </motion.p>
+        <motion.div variants={fadeUp} className="mb-16">
+          <h2 className="text-3xl font-bold text-white md:text-5xl">
+            My Toolbox.
+          </h2>
+          <p className="mt-4 text-gray-400 text-lg">
+            The technologies I use to bring ideas to life.
+          </p>
+        </motion.div>
 
-        <motion.h2
-          variants={fadeUp}
-          className="mb-12 md:mb-16 text-3xl font-semibold text-white md:text-5xl"
-        >
-          Tools & systems I work with
-        </motion.h2>
 
         {/* Cards */}
-        <div className="grid gap-10 md:gap-12">
+        <div className="grid gap-6 md:gap-8">
           {stacks.map((stack, i) => {
             const [powered, setPowered] = useState(false);
 
@@ -98,17 +93,13 @@ const Skills = () => {
                 variants={cardVariants}
                 onHoverStart={() => setPowered(true)}
                 onHoverEnd={() => setPowered(false)}
-                className="group relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl transition-all hover:border-emerald-400/30"
+                className="group relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-2xl transition-all hover:bg-white/[0.08]"
               >
-                {powered && (
-                  <div className="absolute inset-0 -z-10 rounded-2xl bg-emerald-400/12 blur-lg" />
-                )}
-
-                <div className="grid gap-8 md:grid-cols-[80px_260px_1fr] items-center">
+                <div className="grid gap-8 md:grid-cols-[60px_260px_1fr] items-center">
                   {/* Device + Charger */}
                   <div className="relative flex justify-center">
-                    <div className="relative h-20 w-10 rounded-lg bg-neutral-900 border border-white/10 flex items-end justify-center">
-                      <div className="mb-1 h-[3px] w-5 rounded-full bg-black/60" />
+                    <div className="relative h-16 w-8 rounded-lg bg-neutral-900 border border-white/10 flex items-end justify-center">
+                      <div className="mb-1 h-[2px] w-4 rounded-full bg-black/60" />
 
                       {powered && (
                         <motion.div
@@ -129,59 +120,36 @@ const Skills = () => {
                         }}
                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                       >
-                        <div
-                          className="h-3 w-2 bg-emerald-400"
-                          style={{
-                            clipPath:
-                              "polygon(40% 0, 100% 0, 60% 45%, 90% 45%, 20% 100%, 45% 55%, 10% 55%)",
-                          }}
-                        />
+                        {/* Lightning Icon */}
+                        <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.5 0L0 10.5H5.5V18L12 7.5H6.5V0Z" fill="#34D399" />
+                        </svg>
                       </motion.div>
                     </div>
-
-                    <motion.div
-                      animate={
-                        powered
-                          ? { y: 0, opacity: 1 }
-                          : { y: 24, opacity: 0 }
-                      }
-                      transition={{ type: "spring", stiffness: 120 }}
-                      className="absolute -bottom-6 flex flex-col items-center"
-                    >
-                      <div className="h-3 w-5 rounded-sm bg-neutral-300" />
-                      <div className="h-5 w-[3px] bg-emerald-400/80" />
-                    </motion.div>
                   </div>
 
                   {/* Title */}
                   <div>
-                    <h3 className="text-xl font-medium text-white">
+                    <h3 className="text-xl font-bold text-white">
                       {stack.title}
                     </h3>
-                    <p className="mt-3 text-sm text-gray-400 leading-relaxed">
+                    <p className="mt-2 text-sm text-gray-400 leading-relaxed">
                       {stack.description}
                     </p>
                   </div>
 
                   {/* Skill pills */}
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-3">
                     {stack.items.map((item) => (
                       <motion.div
                         key={item.name}
-                        whileHover={{ y: -6, scale: 1.05 }}
-                        animate={
-                          powered
-                            ? { boxShadow: "0 0 16px rgba(52,211,153,0.18)" }
-                            : {}
-                        }
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/30 px-4 py-2 text-sm text-gray-300 backdrop-blur-md"
+                        whileHover={{ y: -4 }}
+                        className="flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-sm text-gray-300 backdrop-blur-md transition-colors hover:bg-white/10 hover:text-white hover:border-white/20"
                       >
-                        <motion.img
+                        <img
                           src={item.icon}
                           alt={item.name}
-                          className="h-5 w-5 opacity-70"
-                          whileHover={{ rotate: 12 }}
+                          className="h-4 w-4 opacity-75 grayscale group-hover:grayscale-0 transition-all"
                         />
                         <span>{item.name}</span>
                       </motion.div>

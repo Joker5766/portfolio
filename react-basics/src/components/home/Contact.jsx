@@ -1,3 +1,5 @@
+// src/components/home/Contact.jsx
+
 import { staggerContainer, fadeUp } from "../../utils/animations";
 import AndroidBot from "../ui/AndroidBot";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
@@ -5,8 +7,7 @@ import emailjs from "@emailjs/browser";
 import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const EMAIL_REGEX =
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -90,7 +91,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="scroll-mt-32 py-20 md:py-24">
+    <section id="contact" className="scroll-mt-32 py-20 md:py-32">
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -98,142 +99,123 @@ const Contact = () => {
         viewport={{ once: true }}
         className="mx-auto max-w-6xl px-6"
       >
-        <motion.p
-          variants={fadeUp}
-          className="mb-4 text-sm uppercase tracking-[0.35em] text-gray-400"
-        >
-          Contact
-        </motion.p>
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
 
-        <motion.h2
-          variants={fadeUp}
-          className="mb-10 md:mb-14 text-3xl font-semibold text-white md:text-5xl"
-        >
-          Let’s build something real
-        </motion.h2>
-
-        <motion.p
-          variants={fadeUp}
-          className="mb-10 -mt-6 max-w-xl text-sm leading-relaxed text-gray-400"
-        >
-          I’m open to Android internships, collaborations, and meaningful project
-          work. If you care about clean architecture and real apps, we’ll get
-          along.
-        </motion.p>
-
-        <div className="grid gap-12 md:grid-cols-[280px_1fr] md:gap-20">
-          <motion.div
-            variants={fadeUp}
-            className="flex flex-col items-start gap-6 md:gap-8"
-          >
-            <AndroidBot />
-
-            <div className="pl-2">
-              <p className="mb-3 text-xs uppercase tracking-widest text-gray-500">
-                Reach me directly
-              </p>
-
-              <div className="flex flex-row flex-wrap gap-6">
-                <a
-                  href="https://www.linkedin.com/in/pranavchavan5766/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
-                >
-                  <FaLinkedin size={18} />
-                  LinkedIn
-                </a>
-
-                <a
-                  href="https://github.com/Joker5766"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
-                >
-                  <FaGithub size={18} />
-                  GitHub
-                </a>
-
-                <a
-                  href="mailto:pranavchavan5766@gmail.com"
-                  className="flex items-center gap-2 text-sm text-gray-400 transition hover:text-white"
-                >
-                  <FaEnvelope size={18} />
-                  Email
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.form
-            ref={formRef}
-            variants={fadeUp}
-            className="grid w-full max-w-xl gap-4"
-            onSubmit={sendEmail}
-            aria-live="polite"
-          >
-            <input
-              type="text"
-              name="from_name"
-              placeholder="Your name"
-              required
-              className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-white/30"
-            />
-
-            <input
-              type="email"
-              name="from_email"
-              placeholder="Your email"
-              required
-              className="rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-white/30"
-            />
-
-            <textarea
-              name="message"
-              rows={4}
-              placeholder="Your message"
-              required
-              className="resize-none rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white outline-none focus:border-white/30"
-            />
-
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className={`mt-2 w-fit rounded-xl px-6 py-3 text-sm transition
-                ${
-                  status === "sending"
-                    ? "cursor-not-allowed border border-white/10 text-gray-500"
-                    : "border border-white/20 text-white hover:border-white/40"
-                }
-              `}
+          {/* Left Column: Context */}
+          <div>
+            <motion.h2
+              variants={fadeUp}
+              className="mb-8 text-3xl font-bold text-white md:text-5xl"
             >
-              {status === "sending" ? "Sending…" : "Send message"}
-            </button>
+              Let's Connect.
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-lg text-gray-400 leading-relaxed mb-8"
+            >
+              I'm currently looking for new opportunities to build high-quality Android applications.
+              Whether you have a question or just want to say hi, my inbox is open.
+            </motion.p>
 
-            <AnimatePresence mode="wait">
-              {status === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  className="mt-2 rounded-lg border border-green-400/20 bg-green-400/5 px-4 py-3 text-sm text-green-400"
-                >
-                  ✓ Message sent. I’ll get back to you shortly.
-                </motion.div>
-              )}
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col gap-4 text-sm text-gray-400"
+            >
+              <a href="mailto:pranavchavan5766@gmail.com" className="flex items-center gap-3 hover:text-green-400 transition-colors">
+                <FaEnvelope size={18} />
+                pranavchavan5766@gmail.com
+              </a>
+              <a href="https://www.linkedin.com/in/pranavchavan5766/" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-green-400 transition-colors">
+                <FaLinkedin size={18} />
+                LinkedIn Profile
+              </a>
+              <a href="https://github.com/Joker5766" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-green-400 transition-colors">
+                <FaGithub size={18} />
+                GitHub Profile
+              </a>
+            </motion.div>
 
-              {status === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  className="mt-2 rounded-lg border border-red-400/20 bg-red-400/5 px-4 py-3 text-sm text-red-400"
-                >
-                  ✕ Something went wrong. Please try again.
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.form>
+            <div className="mt-12">
+              <AndroidBot />
+            </div>
+          </div>
+
+
+          {/* Right Column: Form */}
+          <div>
+            <motion.form
+              ref={formRef}
+              variants={fadeUp}
+              className="flex flex-col gap-6"
+              onSubmit={sendEmail}
+            >
+              <div>
+                <label htmlFor="from_name" className="block text-sm font-medium text-gray-500 mb-2">NAME</label>
+                <input
+                  type="text"
+                  name="from_name"
+                  required
+                  className="w-full bg-transparent border-b border-white/20 py-3 text-white outline-none focus:border-green-500 transition-colors placeholder:text-gray-700"
+                  placeholder="John Doe"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="from_email" className="block text-sm font-medium text-gray-500 mb-2">EMAIL</label>
+                <input
+                  type="email"
+                  name="from_email"
+                  required
+                  className="w-full bg-transparent border-b border-white/20 py-3 text-white outline-none focus:border-green-500 transition-colors placeholder:text-gray-700"
+                  placeholder="john@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-500 mb-2">MESSAGE</label>
+                <textarea
+                  name="message"
+                  rows={4}
+                  required
+                  className="w-full bg-transparent border-b border-white/20 py-3 text-white outline-none focus:border-green-500 transition-colors resize-none placeholder:text-gray-700"
+                  placeholder="Hello..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="mt-4 self-start rounded-full bg-white px-8 py-3 text-sm font-semibold text-black transition hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === "sending" ? "Sending..." : "Send Message"}
+              </button>
+
+              <AnimatePresence>
+                {status === "success" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="text-sm text-green-400 mt-2"
+                  >
+                    Message sent successfully!
+                  </motion.p>
+                )}
+                {status === "error" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="text-sm text-red-400 mt-2"
+                  >
+                    Something went wrong. Please try again.
+                  </motion.p>
+                )}
+              </AnimatePresence>
+
+            </motion.form>
+          </div>
+
         </div>
       </motion.div>
     </section>
