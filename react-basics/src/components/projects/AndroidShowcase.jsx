@@ -1,8 +1,31 @@
 import PhoneFrame from "./PhoneFrame";
 import ScreenshotSlider from "./ScreenshotSlider";
 
-const AndroidShowcase = ({ media }) => {
+const AndroidShowcase = ({ media, compact = false }) => {
   const { screenshots = [], video } = media;
+
+  if (compact) {
+    return (
+      <div className="flex justify-center w-full">
+        <div className="w-[80%] max-w-[280px]">
+          <PhoneFrame size="large">
+            {video ? (
+              <video
+                src={video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="h-full w-full object-cover bg-black"
+              />
+            ) : (
+              <ScreenshotSlider screenshots={screenshots} />
+            )}
+          </PhoneFrame>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="mt-16 md:mt-24 flex justify-center gap-10 md:gap-12 pb-10">
