@@ -11,7 +11,7 @@ const Hero = () => {
   const y = useTransform(scrollY, [0, 700], [0, 100]);
 
   return (
-    <section className="sticky top-0 h-screen z-0 overflow-hidden bg-[#050505] pt-24 lg:pt-0">
+    <section className="sticky top-0 h-[100dvh] lg:h-screen z-0 overflow-hidden bg-[#050505] pt-16 sm:pt-24 lg:pt-0">
 
 
       {/* ===== BACKGROUND ===== */}
@@ -42,17 +42,17 @@ const Hero = () => {
         {/* ================= MOBILE PHOTO (TOP) ================= */}
         <motion.div
           variants={fadeUp}
-          className="lg:hidden mb-10 flex justify-center"
+          className="lg:hidden mb-6 sm:mb-10 mt-2 sm:mt-0 flex justify-center"
         >
-          <div className="relative w-[220px] h-[220px]">
+          <div className="relative w-[160px] h-[160px] sm:w-[220px] sm:h-[220px]">
             <div className="absolute inset-0 border border-green-500/20 rounded-full animate-[spin_60s_linear_infinite]" />
-            <div className="absolute inset-6 border border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
-            <div className="absolute inset-12 border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
+            <div className="absolute inset-4 sm:inset-6 border border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
+            <div className="absolute inset-8 sm:inset-12 border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
 
             <motion.img
               src={me}
               alt="Pranav Chavan"
-              className="absolute inset-0 m-auto w-[140px] rounded-full"
+              className="absolute inset-0 m-auto w-[100px] sm:w-[140px] rounded-full"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               style={{
@@ -72,8 +72,8 @@ const Hero = () => {
           <motion.p
             variants={fadeUp}
             className="
-              mb-4 sm:mb-6
-              inline-flex flex-wrap items-center gap-3
+              mb-3 sm:mb-6
+              inline-flex flex-wrap items-center gap-2 sm:gap-3
               text-xs sm:text-sm
               uppercase
               tracking-[0.2em] sm:tracking-[0.3em]
@@ -87,7 +87,7 @@ const Hero = () => {
 
           <motion.h1
             variants={textReveal}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight tracking-tight text-white mb-6"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight tracking-tight text-white mb-4 sm:mb-6"
           >
             Engineering <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
@@ -97,23 +97,23 @@ const Hero = () => {
 
           <motion.p
             variants={fadeUp}
-            className="max-w-lg mx-auto lg:mx-0 text-base sm:text-lg leading-relaxed text-gray-400 font-light"
+            className="max-w-lg mx-auto lg:mx-0 text-sm sm:text-lg leading-relaxed text-gray-400 font-light"
           >
             I build Android applications that prioritize clean architecture,
             predictable state management, and long-term maintainability.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4">
+          <motion.div variants={fadeUp} className="mt-6 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <a
               href="#projects"
-              className="group relative px-8 py-4 bg-white text-black text-sm font-semibold rounded-full overflow-hidden transition-transform hover:scale-105"
+              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-black text-sm font-semibold rounded-full overflow-hidden transition-transform hover:scale-105"
             >
               <span className="relative z-10">View Projects</span>
               <div className="absolute inset-0 bg-gray-200 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </a>
             <a
               href="#contact"
-              className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white text-sm font-semibold rounded-full hover:bg-white/5 transition-colors text-center"
+              className="hidden sm:block w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 border border-white/20 text-white text-sm font-semibold rounded-full hover:bg-white/5 transition-colors text-center"
             >
               Contact Me
             </a>
