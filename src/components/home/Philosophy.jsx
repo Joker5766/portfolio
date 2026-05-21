@@ -36,8 +36,7 @@ const Philosophy = () => {
               variants={fadeUp}
               className="text-lg text-gray-400 leading-relaxed mb-6"
             >
-              I believe that software should be <strong>calm</strong>. It should feel robust,
-              predictable, and respectful of the user's time.
+              I believe that software should be <strong>calm</strong>. It should feel predictable and respectful of the user's time.
             </motion.p>
 
             <motion.p
@@ -45,7 +44,7 @@ const Philosophy = () => {
               className="text-gray-500 leading-relaxed"
             >
               In a world of noisy notifications and cluttered interfaces, I aim to build
-              tools that quietly empower users to get things done, then get out of the way.
+              tools that help users get things done without getting in the way.
             </motion.p>
           </div>
 

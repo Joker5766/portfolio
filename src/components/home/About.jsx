@@ -19,7 +19,7 @@ const About = () => {
             More than just code.
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-gray-400">
-            I approach Android development from three distinct perspectives.
+            I enjoy building Android apps that balance functionality, clean design, and maintainable architecture.
           </p>
         </motion.div>
 
@@ -33,12 +33,10 @@ const About = () => {
             <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-500/10 text-blue-400">
               <FiCode size={24} />
             </div>
-            <h3 className="mb-3 text-2xl font-bold text-white">The Engineer</h3>
+            <h3 className="mb-3 text-2xl font-bold text-white">The Developer</h3>
             <p className="leading-relaxed text-gray-400">
-              I specialize in <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>.
-              My code is strictly typed, heavily modularized, and built to be read by humans.
-              I don't just "make it work"—I make it robust, efficiently utilizing Android's
-              lifecycle and background processing capabilities.
+              I primarily build Android apps using <strong>Kotlin</strong> and <strong>Jetpack Compose</strong>.
+              I enjoy creating clean, responsive interfaces and organizing projects in a way that keeps them easy to maintain and scale as features grow.
             </p>
           </motion.div>
 
@@ -52,8 +50,7 @@ const About = () => {
             </div>
             <h3 className="mb-3 text-2xl font-bold text-white">The Person</h3>
             <p className="leading-relaxed text-gray-400 text-sm">
-              Computer Science student. Design enthusiast. I bridge the gap between
-              complex backend limitations and fluid user experiences.
+              Outside of development, I enjoy exploring UI design, modern app interactions, and learning through hands-on projects. I like building apps that feel simple, smooth, and practical to use.
             </p>
           </motion.div>
 
@@ -69,8 +66,7 @@ const About = () => {
               <div>
                 <h3 className="mb-3 text-2xl font-bold text-white">The Architect</h3>
                 <p className="leading-relaxed text-gray-400">
-                  Scalability isn't an afterthought. I design systems using <strong>Clean Architecture</strong> and <strong>MVVM/MVI</strong> patterns.
-                  This ensures that as features grow, the codebase remains stable, testable, and easy to navigate for any team size.
+                  I prefer structuring apps using patterns like <strong>MVVM</strong> and principles from <strong>Clean Architecture</strong>. Keeping code organized helps me build features more confidently and makes projects easier to extend over time.
                 </p>
               </div>
               <div className="rounded-xl bg-black/30 border border-white/5 p-6 font-mono text-xs text-green-400/80">

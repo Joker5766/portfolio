@@ -35,3 +35,18 @@ body {
     transform: translate(0, 0);
   }
 }
+
+/* Hide default cursor on desktop/hoverable devices so custom cursor is active */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  a,
+  button,
+  [role="button"],
+  input,
+  textarea,
+  select,
+  .cursor-pointer {
+    cursor: none !important;
+  }
+}

@@ -7,16 +7,17 @@ import { fadeUp, staggerContainer } from "../../utils/animations";
 const stacks = [
   {
     title: "Android Core",
-    description: "Primary tools I use daily for building Android applications.",
+    description: "Primary technologies I use for Android application development.",
     items: [
       { name: "Kotlin", icon: "https://cdn.simpleicons.org/kotlin/7F52FF" },
+      { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/ED8B00" },
       { name: "Jetpack Compose", icon: "https://cdn.simpleicons.org/android/3DDC84" },
       { name: "Android Studio", icon: "https://cdn.simpleicons.org/androidstudio/3DDC84" },
     ],
   },
   {
     title: "Architecture & Background",
-    description: "How apps stay reliable beyond the UI and foreground.",
+    description: "Patterns and tools used to structure applications.",
     items: [
       { name: "ViewModel", icon: "https://cdn.simpleicons.org/android/3DDC84" },
       { name: "Room Database", icon: "https://cdn.simpleicons.org/sqlite/003B57" },
@@ -26,7 +27,7 @@ const stacks = [
   },
   {
     title: "Backend & Data",
-    description: "Systems that feed data into the app and support offline use.",
+    description: "Technologies used for handling data and app services.",
     items: [
       { name: "REST APIs", icon: "https://cdn.simpleicons.org/postman/FF6C37" },
       { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
@@ -35,11 +36,12 @@ const stacks = [
   },
   {
     title: "Exploration",
-    description: "Areas I experiment with beyond standard Android development.",
+    description: "Areas and tools I explore outside my core stack.",
     items: [
-      { name: "Augmented Reality", icon: "https://cdn.simpleicons.org/unity/FFFFFF" },
-      { name: "Computer Vision", icon: "https://cdn.simpleicons.org/opencv/5C3EE8" },
-      { name: "Figma", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
+      { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
+      { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB" },
+      { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+      { name: "Spring Boot", icon: "https://cdn.simpleicons.org/springboot/6DB33F" },
     ],
   },
 ];
@@ -73,10 +75,10 @@ const Skills = () => {
       >
         <motion.div variants={fadeUp} className="mb-16">
           <h2 className="text-3xl font-bold text-white md:text-5xl">
-            My Toolbox.
+            Technologies I Work With
           </h2>
           <p className="mt-4 text-gray-400 text-lg">
-            The technologies I use to bring ideas to life.
+            A collection of tools, frameworks, and technologies I frequently work with.
           </p>
         </motion.div>
 

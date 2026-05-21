@@ -36,7 +36,6 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // ⛔ Prevent rapid re-submits (basic rate limit)
     const now = Date.now();
     if (now - lastSubmitRef.current < 3000) {
       return;
@@ -50,21 +49,18 @@ const Contact = () => {
     const email = form.from_email.value.trim();
     const message = form.message.value.trim();
 
-    // ❌ Block empty values
     if (!name || !email || !message) {
       setStatus("error");
       resetStatusAfter(3000);
       return;
     }
 
-    // ❌ Block invalid email format
     if (!EMAIL_REGEX.test(email)) {
       setStatus("error");
       resetStatusAfter(3000);
       return;
     }
 
-    // ⛔ Prevent duplicate sending state
     if (status === "sending") return;
 
     setStatus("sending");
@@ -121,15 +117,15 @@ const Contact = () => {
               variants={fadeUp}
               className="flex flex-col gap-4 text-sm text-gray-400"
             >
-              <a href="mailto:pranavchavan5766@gmail.com" className="flex items-center gap-3 hover:text-green-400 transition-colors">
+              <a href="mailto:pranavchavan5766@gmail.com" className="group inline-flex items-center gap-3 rounded-full border border-white/10 px-3 py-2 hover:border-green-500/40 hover:bg-white/[0.03] hover:text-green-400 transition-all">
                 <FaEnvelope size={18} />
                 pranavchavan5766@gmail.com
               </a>
-              <a href="https://www.linkedin.com/in/pranavchavan5766/" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-green-400 transition-colors">
+              <a href="https://www.linkedin.com/in/pranavchavan5766/" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 rounded-full border border-white/10 px-3 py-2 hover:border-green-500/40 hover:bg-white/[0.03] hover:text-green-400 transition-all">
                 <FaLinkedin size={18} />
                 LinkedIn Profile
               </a>
-              <a href="https://github.com/Joker5766" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-green-400 transition-colors">
+              <a href="https://github.com/Joker5766" target="_blank" rel="noreferrer" className="group inline-flex items-center gap-3 rounded-full border border-white/10 px-3 py-2 hover:border-green-500/40 hover:bg-white/[0.03] hover:text-green-400 transition-all">
                 <FaGithub size={18} />
                 GitHub Profile
               </a>
