@@ -89,9 +89,9 @@ const Hero = () => {
             variants={textReveal}
             className="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight tracking-tight text-white mb-4 sm:mb-6"
           >
-            Engineering <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-              Reliable Systems
+            Building <br />
+            <span className="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
+              Android Experiences
             </span>
           </motion.h1>
 
@@ -99,8 +99,7 @@ const Hero = () => {
             variants={fadeUp}
             className="max-w-lg mx-auto lg:mx-0 text-sm sm:text-lg leading-relaxed text-gray-400 font-light"
           >
-            I build Android applications that prioritize clean architecture,
-            predictable state management, and long-term maintainability.
+            Android developer focused on building modern apps with Kotlin and Jetpack Compose. Interested in clean UI, practical architecture, and smooth user experiences.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-6 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
