@@ -81,12 +81,13 @@ export const projects = [
     ],
   },
 
+
   {
     id: "goconvert",
     title: "GoConvert",
     shortTagline: "Fast currency conversion, even offline.",
     type: "Android Application",
-    role: "Solo Developer",
+    role: "Solo Android Developer",
     status: "Completed",
 
     overview:
@@ -137,6 +138,77 @@ export const projects = [
       "Offline-first flows",
     ],
   },
+
+
+
+  {
+    id: "katai",
+    title: "Katai",
+    shortTagline: "AI-powered PDF conversations.",
+    type: "Android Application",
+    role: "Solo Android Developer",
+    status: "Coming Soon",
+    isUnderDevelopment: true,
+
+    overview:
+      "Katai is an AI-powered Android application that enables grounded conversations with PDF documents using modern on-device and cloud-integrated workflows.",
+
+    features: [
+      {
+        title: "AI PDF Conversations",
+        description:
+          "Ask questions directly from uploaded PDF documents and receive context-aware responses grounded in extracted document content.",
+      },
+      {
+        title: "Multi-Chat Sessions",
+        description:
+          "Supports multiple persistent chat sessions with rename, delete, and session history management.",
+      },
+      {
+        title: "Modern Chat Experience",
+        description:
+          "Includes typing animations, polished Compose UI, smooth navigation, and modern messaging interactions.",
+      },
+      {
+        title: "Persistent Local Storage",
+        description:
+          "Stores conversations and session data locally for continuity across app launches.",
+      },
+    ],
+
+    techStack: [
+      "Kotlin",
+      "Jetpack Compose",
+      "MVVM",
+      "Retrofit",
+      "StateFlow",
+      "PDFBox",
+    ],
+
+    media: {
+      type: "android",
+      screenshots: [],
+      video: null,
+    },
+
+    badges: ["Android App", "AI Powered"],
+
+    actions: [
+      {
+        label: "Coming soon...",
+        type: "primary",
+        url: null,
+      },
+    ],
+
+    learnings: [
+      "AI integration",
+      "Scalable chat architecture",
+      "State management",
+      "PDF processing",
+    ],
+  },
+
 
   {
     id: "istylear",

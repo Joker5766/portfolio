@@ -68,20 +68,30 @@ const ProjectCard = ({ project }) => {
             {project.role}
           </span>
 
-          <Link
-            to={`/projects/${project.id}`}
-            state={{ scrollY: window.scrollY }}
-            className="relative inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-white/20 px-4 py-2 text-xs font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
-          >
-            <span>View case study</span>
-
-            <motion.span
-              className="inline-block"
-              variants={arrowVariants}
+          {project.isUnderDevelopment ? (
+            <div className="relative inline-flex items-center gap-2.5 whitespace-nowrap rounded-lg border border-yellow-500/20 bg-yellow-500/5 px-4 py-2 text-xs font-medium text-yellow-500/80 backdrop-blur-sm cursor-not-allowed">
+              <span>Under Development</span>
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400/80 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-yellow-500"></span>
+              </span>
+            </div>
+          ) : (
+            <Link
+              to={`/projects/${project.id}`}
+              state={{ scrollY: window.scrollY }}
+              className="relative inline-flex items-center gap-2 whitespace-nowrap rounded-lg border border-white/20 px-4 py-2 text-xs font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/5"
             >
-              →
-            </motion.span>
-          </Link>
+              <span>View case study</span>
+
+              <motion.span
+                className="inline-block"
+                variants={arrowVariants}
+              >
+                →
+              </motion.span>
+            </Link>
+          )}
         </div>
       </div>
     </motion.article>

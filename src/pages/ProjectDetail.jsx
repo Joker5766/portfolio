@@ -15,12 +15,19 @@ const ProjectDetail = () => {
   const location = useLocation();
   const [expandedIndex, setExpandedIndex] = useState(null);
 
+  const project = projects.find((p) => p.id === id);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
 
-  const project = projects.find((p) => p.id === id);
-  if (!project) return null;
+  useEffect(() => {
+    if (project?.isUnderDevelopment) {
+      navigate("/", { replace: true });
+    }
+  }, [project, navigate]);
+
+  if (!project || project.isUnderDevelopment) return null;
 
   return (
     <PageWrapper>

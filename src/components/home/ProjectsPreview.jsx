@@ -20,7 +20,7 @@ const ProjectsPreview = () => {
       >
         <motion.p
           variants={fadeUp}
-          className="mb-4 text-sm uppercase tracking-[0.35em] text- -400"
+          className="mb-4 text-sm uppercase tracking-[0.35em] text-white"
         >
           Projects
         </motion.p>
