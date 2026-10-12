@@ -11,7 +11,7 @@ const Footer = () => {
       viewport={{ once: true }}
       className="mt-32 border-t border-white/10 bg-black/40"
     >
-      <div className="mx-auto max-w-7xl px-6 py-10 flex flex-col items-center gap-4 text-center">
+      <div className="mx-auto max-w-[1200px] px-6 py-10 flex flex-col items-center gap-4 text-center">
         <p className="text-sm text-gray-400">
           Designed & Built by <span className="text-white">Pranav Chavan</span>
         </p>

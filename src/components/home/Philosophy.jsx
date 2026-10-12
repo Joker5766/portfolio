@@ -19,7 +19,7 @@ const Philosophy = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="relative mx-auto max-w-6xl px-6"
+        className="relative mx-auto max-w-[1200px] px-6"
       >
         <div className="grid md:grid-cols-2 gap-16 items-center">
 

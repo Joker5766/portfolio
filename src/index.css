@@ -12,6 +12,20 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+.font-handwriting {
+  font-family: 'Caveat', cursive, Georgia, serif;
+}
+
+/* Unified layout container rule — guarantees pixel-perfect horizontal alignment across all sections */
+.section-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem; /* px-6 (24px) */
+  padding-right: 1.5rem; /* px-6 (24px) */
+}
+
 /* Optional: scrollbar (safe) */
 ::-webkit-scrollbar {
   width: 8px;

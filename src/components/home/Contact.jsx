@@ -93,7 +93,7 @@ const Contact = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="mx-auto max-w-6xl px-6"
+        className="mx-auto max-w-[1200px] px-6"
       >
         <div className="grid md:grid-cols-2 gap-16 md:gap-24">
 

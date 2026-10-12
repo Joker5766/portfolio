@@ -9,7 +9,7 @@ import AndroidShowcase from "../components/projects/AndroidShowcase";
 import { projects } from "../data/projects";
 import { fadeUp } from "../utils/animations";
 
-const ProjectDetail = () => {
+const ProjectDetail = ({ isModal = false }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,21 +18,240 @@ const ProjectDetail = () => {
   const project = projects.find((p) => p.id === id);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
+    if (!isModal) {
+      window.scrollTo(0, 0);
+    }
+  }, [id, isModal]);
 
   useEffect(() => {
-    if (project?.isUnderDevelopment) {
+    if (!project || project?.isUnderDevelopment) {
       navigate("/", { replace: true });
     }
   }, [project, navigate]);
 
+  const handleBack = () => {
+    if (isModal || location.state?.background || window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    if (!isModal) return;
+
+    // Lock background page scroll while modal is active
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        handleBack();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      // Restore background page scroll on modal close
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModal]);
+
   if (!project || project.isUnderDevelopment) return null;
+
+  if (isModal) {
+    const cardRect = location.state?.cardRect;
+    let initialX = 0;
+    let initialY = 40;
+    let initialScale = 0.85;
+
+    if (cardRect) {
+      const cardCenterX = cardRect.left + cardRect.width / 2;
+      const cardCenterY = cardRect.top + cardRect.height / 2;
+      const screenCenterX = window.innerWidth / 2;
+      const screenCenterY = window.innerHeight / 2;
+      initialX = cardCenterX - screenCenterX;
+      initialY = cardCenterY - screenCenterY;
+      initialScale = Math.max(0.2, Math.min(0.45, cardRect.width / (window.innerWidth * 0.9)));
+    }
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 overflow-hidden">
+        {/* Backdrop */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35 }}
+          onClick={handleBack}
+          className="absolute inset-0 bg-black/85"
+        />
+
+        {/* macOS Genie Zoom Expand & Minimize Modal Window */}
+        <motion.div
+          initial={{ opacity: 0, scale: initialScale, x: initialX, y: initialY }}
+          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+          exit={{ opacity: 0, scale: initialScale, x: initialX, y: initialY }}
+          transition={{
+            type: "spring",
+            stiffness: 340,
+            damping: 28,
+            mass: 0.8,
+          }}
+          style={{ willChange: "transform, opacity", transformOrigin: "center center" }}
+          className="relative z-10 flex h-[94vh] w-full max-w-[1200px] flex-col overflow-hidden rounded-3xl border border-white/20 bg-[#0d0d0d] shadow-[0_30px_90px_rgba(0,0,0,0.95)]"
+        >
+          {/* Clean Modal Header Bar */}
+          <div className="flex items-center justify-between border-b border-white/10 bg-neutral-950/90 px-6 py-4 backdrop-blur-xl select-none">
+            <button
+              onClick={handleBack}
+              className="group flex items-center gap-2 text-xs font-mono text-neutral-400 hover:text-white transition-colors"
+            >
+              <FiArrowLeft className="transition-transform group-hover:-translate-x-1" />
+              <span>Back to Projects</span>
+            </button>
+
+            <div className="flex items-center gap-2 font-mono text-xs text-neutral-300">
+              {project.icon && <span className="text-base">{project.icon}</span>}
+              <span className="font-semibold text-white tracking-wide">{project.title}</span>
+            </div>
+
+            <button
+              onClick={handleBack}
+              className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-neutral-400 hover:border-white/30 hover:text-white transition-colors"
+            >
+              Minimize (Esc)
+            </button>
+          </div>
+
+          {/* Scrollable Detail Body */}
+          <div className="flex-1 overflow-y-auto px-6 py-6 md:px-10 md:py-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-start">
+              
+              {/* LEFT COLUMN: Title, Badges, Overview & Features */}
+              <div className="lg:col-span-7 space-y-8">
+                {/* Title & Badge Header */}
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-mono text-emerald-400">
+                      {project.type}
+                    </span>
+                    {project.status && (
+                      <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-neutral-300">
+                        {project.status}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    {project.icon && (
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl shadow-md backdrop-blur-md">
+                        {project.icon}
+                      </div>
+                    )}
+                    <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+                      {project.title}
+                    </h1>
+                  </div>
+
+                  <p className="text-base text-gray-400 md:text-lg leading-relaxed font-light">
+                    {project.shortTagline || project.role}
+                  </p>
+                </div>
+
+                {/* Overview */}
+                <section className="border-t border-white/10 pt-6">
+                  <h3 className="mb-3 text-xs font-mono uppercase tracking-widest text-neutral-400">Overview</h3>
+                  <p className="text-sm md:text-base leading-relaxed text-gray-300 font-light">
+                    {project.overview}
+                  </p>
+                </section>
+
+                {/* Key Features */}
+                {project.features && (
+                  <section className="border-t border-white/10 pt-6">
+                    <h3 className="mb-4 text-xs font-mono uppercase tracking-widest text-neutral-400">Key Features</h3>
+                    <div className="grid gap-3">
+                      {project.features.map((feature, i) => (
+                        <div key={i} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                          <h4 className="flex items-center gap-2 text-sm font-semibold text-white">
+                            <FiCheckCircle className="text-emerald-400" />
+                            {feature.title}
+                          </h4>
+                          <p className="mt-1 text-xs leading-relaxed text-gray-400 font-light">
+                            {feature.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </div>
+
+              {/* RIGHT COLUMN: Showcase Media (Top), Tech Stack & Links */}
+              <div className="lg:col-span-5 space-y-6">
+                {/* 3-Phone Video Showcase Box */}
+                <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/90 p-3 flex justify-center shadow-2xl">
+                  {project.media?.type === "android" ? (
+                    <AndroidShowcase media={project.media} compact />
+                  ) : (
+                    <div className="aspect-video w-full flex items-center justify-center bg-white/5 rounded-xl">
+                      <span className="text-xs font-mono text-gray-500">Web Showcase</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Technologies */}
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-md">
+                  <h4 className="mb-3 text-xs font-mono uppercase tracking-widest text-neutral-400">Technologies</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack?.map((tech) => (
+                      <span key={tech} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1 text-xs font-mono text-gray-300">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                {project.actions && (
+                  <div className="flex flex-col gap-3">
+                    {project.actions.map((action, i) => (
+                      <a
+                        key={i}
+                        href={action.url || "#"}
+                        target="_blank"
+                        rel="noreferrer"
+                        className={`flex items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-xs font-semibold transition-all hover:scale-[1.02] active:scale-95 ${
+                          action.type === "primary"
+                            ? "bg-white text-black hover:bg-neutral-200"
+                            : "border border-white/20 bg-white/5 text-white hover:border-white/40"
+                        }`}
+                      >
+                        {action.label.includes("Play Store") && <FaGooglePlay />}
+                        {action.label.includes("GitHub") && <FiGithub />}
+                        {!action.label.includes("Play Store") && !action.label.includes("GitHub") && (
+                          <FiExternalLink />
+                        )}
+                        <span>{action.label}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <PageWrapper>
       <div className="min-h-screen bg-[#0a0a0a] px-6 pt-16 pb-12 md:px-12 md:pt-20 md:pb-20 lg:px-20">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[1200px]">
 
           {/* Header */}
           <motion.div
@@ -64,9 +283,16 @@ const ProjectDetail = () => {
                 )}
               </div>
 
-              <h1 className="text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-                {project.title}
-              </h1>
+              <div className="flex items-center gap-4">
+                {project.icon && (
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl shadow-md backdrop-blur-md">
+                    {project.icon}
+                  </div>
+                )}
+                <h1 className="text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+                  {project.title}
+                </h1>
+              </div>
 
               <p className="max-w-2xl text-base text-gray-400 md:text-lg">
                 {project.shortTagline || project.role}

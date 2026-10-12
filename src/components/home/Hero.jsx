@@ -36,7 +36,7 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
         style={{ opacity, scale, y }}
-        className="relative mx-auto max-w-6xl px-4 sm:px-6 h-full flex flex-col justify-center"
+        className="relative mx-auto max-w-[1200px] px-6 h-full flex flex-col justify-center"
       >
 
         {/* ================= MOBILE PHOTO (TOP) ================= */}

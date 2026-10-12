@@ -12,7 +12,7 @@ const About = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="mx-auto max-w-6xl px-6"
+        className="mx-auto max-w-[1200px] px-6"
       >
         <motion.div variants={fadeUp} className="mb-12">
           <h2 className="text-3xl font-bold text-white md:text-5xl">

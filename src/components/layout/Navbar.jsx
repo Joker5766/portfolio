@@ -73,7 +73,7 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="fixed top-0 left-0 w-full z-50 pointer-events-none"
     >
-      <div className="mx-auto max-w-7xl px-6 pointer-events-auto">
+      <div className="mx-auto max-w-[1200px] px-6 pointer-events-auto">
         <motion.div
           animate={{
             backgroundColor: isScrolled
