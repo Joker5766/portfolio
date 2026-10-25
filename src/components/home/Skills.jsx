@@ -4,75 +4,63 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "../../utils/animations";
 
-const mobileEcosystem = [
-  { name: "Kotlin", icon: "https://cdn.simpleicons.org/kotlin/7F52FF" },
-  { name: "Java", icon: "https://cdn.simpleicons.org/openjdk/ED8B00" },
-  { name: "Jetpack Compose", icon: "https://cdn.simpleicons.org/android/3DDC84" },
-  { name: "React Native", icon: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "Android Studio", icon: "https://cdn.simpleicons.org/androidstudio/3DDC84" },
-];
+import {
+  mobileEcosystem,
+  architectureSkills,
+  backendDataSkills,
+  webPlatformSkills,
+} from "../../data/skills";
 
-const architectureSkills = [
-  {
-    name: "MVVM Pattern",
-    customIcon: (
-      <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
-        <rect x="2" y="3" width="20" height="18" rx="2" strokeWidth="1.5" />
-      </svg>
-    ),
-  },
-  {
-    name: "Coroutines & Flow",
-    customIcon: (
-      <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    name: "Room & SQLite",
-    customIcon: (
-      <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z" />
-        <path d="M4 7v5c0 1.7 3.6 3 8 3s8-1.3 8-3V7" />
-        <path d="M4 12v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5" />
-      </svg>
-    ),
-  },
-  {
-    name: "WorkManager",
-    customIcon: (
-      <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 3" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-];
+const renderSkillIcon = (skill) => {
+  if (skill.icon) {
+    return (
+      <img
+        src={skill.icon}
+        alt={skill.name}
+        className="w-full h-full object-contain filter drop-shadow"
+      />
+    );
+  }
 
-const backendDataSkills = [
-  {
-    name: "REST APIs",
-    customIcon: (
-      <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 10h-4V6a2 2 0 0 4 0v4H6a2 2 0 0 0 0 4h4v4a2 2 0 0 0 4 0v-4h4a2 2 0 0 0 0-4z" />
-      </svg>
-    ),
-  },
-  { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
-  { name: "Supabase", icon: "https://cdn.simpleicons.org/supabase/3FCF8E" },
-  { name: "PostgreSQL", icon: "https://cdn.simpleicons.org/postgresql/4169E1" },
-  { name: "MongoDB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
-];
-
-const webPlatformSkills = [
-  { name: "JavaScript", icon: "https://cdn.simpleicons.org/javascript/F7DF1E" },
-  { name: "TypeScript", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
-  { name: "React", icon: "https://cdn.simpleicons.org/react/61DAFB" },
-  { name: "Next.js", icon: "https://cdn.simpleicons.org/nextdotjs/white" },
-  { name: "Tailwind CSS", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
-];
+  switch (skill.iconType) {
+    case "mvvm":
+      return (
+        <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
+          <rect x="2" y="3" width="20" height="18" rx="2" strokeWidth="1.5" />
+        </svg>
+      );
+    case "coroutines":
+      return (
+        <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "room":
+      return (
+        <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z" />
+          <path d="M4 7v5c0 1.7 3.6 3 8 3s8-1.3 8-3V7" />
+          <path d="M4 12v5c0 1.7 3.6 3 8 3s8-1.3 8-3v-5" />
+        </svg>
+      );
+    case "workmanager":
+      return (
+        <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 3" strokeLinecap="round" />
+        </svg>
+      );
+    case "rest":
+      return (
+        <svg className="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M18 10h-4V6a2 2 0 0 4 0v4H6a2 2 0 0 0 0 4h4v4a2 2 0 0 0 4 0v-4h4a2 2 0 0 0 0-4z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+};
 
 const Skills = () => {
   const [hoveredBox, setHoveredBox] = useState(null);
@@ -170,7 +158,7 @@ const Skills = () => {
                     className="flex items-center gap-3 p-3.5 rounded-xl border border-white/[0.08] bg-neutral-900/90 hover:border-emerald-500/40 hover:bg-neutral-900 transition-all group/item"
                   >
                     <div className="w-8 h-8 rounded-lg bg-neutral-800/80 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover/item:scale-105 transition-transform">
-                      <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain filter drop-shadow" />
+                      {renderSkillIcon(skill)}
                     </div>
                     <h4 className="text-xs font-semibold text-white group-hover/item:text-emerald-400 transition-colors leading-snug">
                       {skill.name}
@@ -252,7 +240,7 @@ const Skills = () => {
                     className="flex items-center gap-3 p-3.5 rounded-xl border border-white/[0.08] bg-neutral-900/90 hover:border-emerald-500/40 hover:bg-neutral-900 transition-all group/item"
                   >
                     <div className="w-8 h-8 rounded-lg bg-neutral-800/80 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover/item:scale-105 transition-transform">
-                      {skill.customIcon}
+                      {renderSkillIcon(skill)}
                     </div>
                     <h4 className="text-xs font-semibold text-white group-hover/item:text-emerald-400 transition-colors leading-snug">
                       {skill.name}
@@ -426,11 +414,7 @@ const Skills = () => {
                     className="flex items-center gap-3 p-3.5 rounded-xl border border-white/[0.08] bg-neutral-900/90 hover:border-emerald-500/40 hover:bg-neutral-900 transition-all group/item"
                   >
                     <div className="w-8 h-8 rounded-lg bg-neutral-800/80 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover/item:scale-105 transition-transform">
-                      {skill.icon ? (
-                        <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain filter drop-shadow" />
-                      ) : (
-                        skill.customIcon
-                      )}
+                      {renderSkillIcon(skill)}
                     </div>
                     <h4 className="text-xs font-semibold text-white group-hover/item:text-emerald-400 transition-colors leading-snug">
                       {skill.name}
@@ -463,7 +447,7 @@ const Skills = () => {
                     className="flex items-center gap-3 p-3.5 rounded-xl border border-white/[0.08] bg-neutral-900/90 hover:border-emerald-500/40 hover:bg-neutral-900 transition-all group/item"
                   >
                     <div className="w-8 h-8 rounded-lg bg-neutral-800/80 border border-white/10 flex items-center justify-center p-1.5 shrink-0 group-hover/item:scale-105 transition-transform">
-                      <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain filter drop-shadow" />
+                      {renderSkillIcon(skill)}
                     </div>
                     <h4 className="text-xs font-semibold text-white group-hover/item:text-emerald-400 transition-colors leading-snug">
                       {skill.name}

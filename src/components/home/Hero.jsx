@@ -82,7 +82,7 @@ const Hero = () => {
           >
             <span>Pranav Chavan</span>
             <span aria-hidden className="h-0.5 w-6 bg-green-500/50"></span>
-            <span className="text-gray-400">Android Developer</span>
+            <span className="text-gray-400">Software Developer</span>
           </motion.p>
 
           <motion.h1
@@ -91,15 +91,15 @@ const Hero = () => {
           >
             Building <br />
             <span className="whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-              Android Experiences
+              Software Experiences
             </span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="max-w-lg mx-auto lg:mx-0 text-sm sm:text-lg leading-relaxed text-gray-400 font-light"
+            className="max-w-2xl mx-auto lg:mx-0 text-sm sm:text-lg leading-relaxed text-gray-400 font-light"
           >
-            Android developer focused on building modern apps with Kotlin and Jetpack Compose. Interested in clean UI, practical architecture, and smooth user experiences.
+            I build mobile and web applications, turning ideas into practical products. My strongest experience is in Android development, with an interest in clean architecture, thoughtful design, and reliable software.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-6 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -124,7 +124,7 @@ const Hero = () => {
           className="hidden lg:block pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 mr-[-100px]"
           style={{ opacity: 0.8 }}
         >
-          <div className="relative w-[500px] h-[500px]">
+          <div className="relative w-[520px] h-[520px]">
             <div className="absolute inset-0 border border-green-500/20 rounded-full animate-[spin_60s_linear_infinite]" />
             <div className="absolute inset-8 border border-white/10 rounded-full animate-[spin_40s_linear_infinite_reverse]" />
             <div className="absolute inset-16 border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
@@ -132,7 +132,7 @@ const Hero = () => {
             <motion.img
               src={me}
               alt="Pranav Chavan"
-              className="absolute inset-0 m-auto w-[320px] rounded-full"
+              className="absolute inset-0 m-auto w-[340px] rounded-full"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               style={{
