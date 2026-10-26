@@ -6,6 +6,7 @@ import { FaGooglePlay } from "react-icons/fa";
 
 import PageWrapper from "../components/layout/PageWrapper";
 import AndroidShowcase from "../components/projects/AndroidShowcase";
+import ScreenshotSlider from "../components/projects/ScreenshotSlider";
 import { projects } from "../data/projects";
 import { fadeUp } from "../utils/animations";
 
@@ -113,7 +114,11 @@ const ProjectDetail = ({ isModal = false }) => {
             </button>
 
             <div className="flex items-center gap-2 font-mono text-xs text-neutral-300">
-              {project.icon && <span className="text-base">{project.icon}</span>}
+              {project.logo ? (
+                <img src={project.logo} alt="" className="h-4 w-4 object-contain rounded-sm" />
+              ) : project.icon ? (
+                <span className="text-base">{project.icon}</span>
+              ) : null}
               <span className="font-semibold text-white tracking-wide">{project.title}</span>
             </div>
 
@@ -145,11 +150,15 @@ const ProjectDetail = ({ isModal = false }) => {
                   </div>
 
                   <div className="flex items-center gap-4">
-                    {project.icon && (
+                    {project.logo ? (
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-neutral-800/90 p-1.5 shadow-md backdrop-blur-md overflow-hidden">
+                        <img src={project.logo} alt="" className="h-full w-full object-contain rounded-xl" />
+                      </div>
+                    ) : project.icon ? (
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl shadow-md backdrop-blur-md">
                         {project.icon}
                       </div>
-                    )}
+                    ) : null}
                     <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
                       {project.title}
                     </h1>
@@ -195,6 +204,18 @@ const ProjectDetail = ({ isModal = false }) => {
                 <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/90 p-3 flex justify-center shadow-2xl">
                   {project.media?.type === "android" ? (
                     <AndroidShowcase media={project.media} compact />
+                  ) : project.media?.screenshots?.length > 0 ? (
+                    <div className="relative flex aspect-video w-full flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-xl">
+                      <div className="flex items-center gap-2 border-b border-white/10 bg-neutral-950 px-3 py-2 text-[10px] font-mono text-neutral-500">
+                        <span className="h-2 w-2 rounded-full bg-neutral-600" />
+                        <span className="truncate">
+                          {project.actions?.find((a) => a.url?.startsWith("http"))?.url.replace(/^https?:\/\//, "").replace(/\/$/, "") || `${project.id}.dev`}
+                        </span>
+                      </div>
+                      <div className="relative flex-1 w-full overflow-hidden bg-neutral-950">
+                        <ScreenshotSlider screenshots={project.media.screenshots} />
+                      </div>
+                    </div>
                   ) : (
                     <div className="aspect-video w-full flex items-center justify-center bg-white/5 rounded-xl">
                       <span className="text-xs font-mono text-gray-500">Web Showcase</span>
@@ -284,11 +305,15 @@ const ProjectDetail = ({ isModal = false }) => {
               </div>
 
               <div className="flex items-center gap-4">
-                {project.icon && (
+                {project.logo ? (
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-neutral-800/90 p-1.5 shadow-md backdrop-blur-md overflow-hidden">
+                    <img src={project.logo} alt="" className="h-full w-full object-contain rounded-xl" />
+                  </div>
+                ) : project.icon ? (
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl shadow-md backdrop-blur-md">
                     {project.icon}
                   </div>
-                )}
+                ) : null}
                 <h1 className="text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
                   {project.title}
                 </h1>
@@ -331,6 +356,18 @@ const ProjectDetail = ({ isModal = false }) => {
                   {project.media?.type === "android" ? (
                     <div className="flex justify-center py-8 bg-gradient-to-b from-white/5 to-transparent">
                       <AndroidShowcase media={project.media} compact />
+                    </div>
+                  ) : project.media?.screenshots?.length > 0 ? (
+                    <div className="relative flex aspect-video w-full flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-xl">
+                      <div className="flex items-center gap-2 border-b border-white/10 bg-neutral-950 px-3 py-2 text-[10px] font-mono text-neutral-500">
+                        <span className="h-2 w-2 rounded-full bg-neutral-600" />
+                        <span className="truncate">
+                          {project.actions?.find((a) => a.url?.startsWith("http"))?.url.replace(/^https?:\/\//, "").replace(/\/$/, "") || `${project.id}.dev`}
+                        </span>
+                      </div>
+                      <div className="relative flex-1 w-full overflow-hidden bg-neutral-950">
+                        <ScreenshotSlider screenshots={project.media.screenshots} />
+                      </div>
                     </div>
                   ) : (
                     <div className="aspect-video flex items-center justify-center bg-white/5">
@@ -434,6 +471,18 @@ const ProjectDetail = ({ isModal = false }) => {
                   {project.media?.type === "android" ? (
                     <div className="flex justify-center py-8 bg-gradient-to-b from-white/5 to-transparent">
                       <AndroidShowcase media={project.media} compact />
+                    </div>
+                  ) : project.media?.screenshots?.length > 0 ? (
+                    <div className="relative flex aspect-video w-full flex-col overflow-hidden rounded-xl border border-white/10 bg-neutral-900 shadow-xl">
+                      <div className="flex items-center gap-2 border-b border-white/10 bg-neutral-950 px-3 py-2 text-[10px] font-mono text-neutral-500">
+                        <span className="h-2 w-2 rounded-full bg-neutral-600" />
+                        <span className="truncate">
+                          {project.actions?.find((a) => a.url?.startsWith("http"))?.url.replace(/^https?:\/\//, "").replace(/\/$/, "") || `${project.id}.dev`}
+                        </span>
+                      </div>
+                      <div className="relative flex-1 w-full overflow-hidden bg-neutral-950">
+                        <ScreenshotSlider screenshots={project.media.screenshots} />
+                      </div>
                     </div>
                   ) : (
                     <div className="aspect-video flex items-center justify-center bg-white/5">

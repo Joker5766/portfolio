@@ -23,11 +23,15 @@ const ProjectCard = ({ project, index }) => {
             <span className="flex h-8 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 font-mono text-sm font-bold text-neutral-400 group-hover:text-neutral-200 transition-colors shadow-sm">
               {formattedIndex}
             </span>
-            {project.icon && (
+            {project.logo ? (
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-neutral-800/90 shadow-md backdrop-blur-md transition-transform group-hover:scale-105 overflow-hidden p-1">
+                <img src={project.logo} alt="" className="h-full w-full object-contain rounded-lg" />
+              </div>
+            ) : project.icon ? (
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-base shadow-sm backdrop-blur-md transition-transform group-hover:scale-105">
                 {project.icon}
               </div>
-            )}
+            ) : null}
             <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors truncate">
               {project.title}
             </h3>
@@ -112,7 +116,9 @@ const ProjectCard = ({ project, index }) => {
               {/* Minimal Web Address Bar */}
               <div className="flex items-center gap-2 border-b border-white/10 bg-neutral-950 px-3 py-1.5 text-[9px] font-mono text-neutral-500">
                 <span className="h-1.5 w-1.5 rounded-full bg-neutral-600" />
-                <span className="truncate">https://{project.id}.dev</span>
+                <span className="truncate">
+                  {project.actions?.find((a) => a.url?.startsWith("http"))?.url.replace(/^https?:\/\//, "").replace(/\/$/, "") || `${project.id}.dev`}
+                </span>
               </div>
 
               {/* Web Screen Area */}

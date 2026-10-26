@@ -57,7 +57,11 @@ const ProjectModal = ({ project, onClose }) => {
 
             {/* Window Title */}
             <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
-              {project.icon && <span>{project.icon}</span>}
+              {project.logo ? (
+                <img src={project.logo} alt="" className="h-4 w-4 object-contain rounded-sm" />
+              ) : project.icon ? (
+                <span>{project.icon}</span>
+              ) : null}
               <span className="font-semibold text-white">{project.title}</span>
               <span>— Case Study</span>
             </div>
@@ -145,7 +149,9 @@ const ProjectModal = ({ project, onClose }) => {
                     <div className="w-full space-y-3">
                       <div className="flex items-center gap-2 border-b border-white/10 pb-2 text-[10px] font-mono text-neutral-500">
                         <span className="h-2 w-2 rounded-full bg-neutral-600" />
-                        <span>https://{project.id}.dev</span>
+                        <span className="truncate">
+                          {project.actions?.find((a) => a.url?.startsWith("http"))?.url.replace(/^https?:\/\//, "").replace(/\/$/, "") || `${project.id}.dev`}
+                        </span>
                       </div>
                       <div className="aspect-video w-full rounded-lg bg-neutral-900 flex items-center justify-center">
                         {project.media?.screenshots?.[0] ? (

@@ -125,7 +125,7 @@ const ProjectsPreview = () => {
                     {isMobile ? (
                       /* 3-Phone Showcase Display */
                       <div className="relative flex h-full w-full items-center justify-center">
-                        {/* Left Background Phone: Screenshot 1 */}
+                        {/* Left Background Screen: Screenshot 1 */}
                         <div className="absolute left-1/2 -translate-x-[115%] scale-[0.8] -rotate-[12deg] opacity-60 transition-all duration-500 group-hover:-translate-x-[125%] group-hover:-rotate-[16deg] group-hover:opacity-90 z-0 pointer-events-none">
                           <div className="relative flex h-48 w-28 flex-col items-center justify-center rounded-2xl border border-white/10 bg-neutral-900 p-1 shadow-lg">
                             <div className="mb-1 h-1 w-6 rounded-full bg-neutral-700" />
@@ -151,7 +151,7 @@ const ProjectsPreview = () => {
                           </div>
                         </div>
 
-                        {/* Right Background Phone: Screenshot 2 */}
+                        {/* Right Background Screen: Screenshot 2 */}
                         <div className="absolute left-1/2 translate-x-[15%] scale-[0.8] rotate-[12deg] opacity-60 transition-all duration-500 group-hover:translate-x-[25%] group-hover:rotate-[16deg] group-hover:opacity-90 z-0 pointer-events-none">
                           <div className="relative flex h-48 w-28 flex-col items-center justify-center rounded-2xl border border-white/10 bg-neutral-900 p-1 shadow-lg">
                             <div className="mb-1 h-1 w-6 rounded-full bg-neutral-700" />
@@ -177,7 +177,7 @@ const ProjectsPreview = () => {
                           </div>
                         </div>
 
-                        {/* Center Foreground Phone: Dedicated Logo & Title Cover */}
+                        {/* Center Foreground Screen: Dedicated Logo & Title Cover */}
                         <div className="relative z-10 flex h-full max-h-52 w-32 flex-col items-center justify-center rounded-2xl border border-white/25 bg-neutral-900 p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-transform duration-500 group-hover:scale-105">
                           <div className="mb-1.5 h-1 w-8 rounded-full bg-neutral-700" />
                           <div className="relative h-full w-full overflow-hidden rounded-xl bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-900 flex flex-col items-center justify-center p-3 text-center border border-white/10 shadow-inner">
@@ -185,7 +185,15 @@ const ProjectsPreview = () => {
                             <div className="absolute h-20 w-20 rounded-full bg-emerald-500/10 blur-xl pointer-events-none" />
 
                             {/* Logo / App Icon */}
-                            {project.icon ? (
+                            {project.logo ? (
+                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-neutral-800/90 shadow-md backdrop-blur-md transition-transform group-hover:scale-110 overflow-hidden p-1.5">
+                                <img
+                                  src={project.logo}
+                                  alt={`${project.title} logo`}
+                                  className="h-full w-full object-contain rounded-xl"
+                                />
+                              </div>
+                            ) : project.icon ? (
                               <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-neutral-800/90 text-2xl shadow-md backdrop-blur-md transition-transform group-hover:scale-110">
                                 {project.icon}
                               </div>
@@ -208,29 +216,70 @@ const ProjectsPreview = () => {
                         </div>
                       </div>
                     ) : (
-                      /* Web Desktop Frame */
-                      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-xl border border-white/20 bg-neutral-900 shadow-xl transition-transform duration-500 group-hover:scale-[1.02]">
-                        <div className="flex items-center gap-2 border-b border-white/10 bg-neutral-950 px-3 py-2 text-[10px] font-mono text-neutral-500">
-                          <span className="h-2 w-2 rounded-full bg-neutral-600" />
-                          <span>https://{project.id}.dev</span>
+                      /* Web Desktop Browser Frame with Backdrop Screenshot & Centered Logo */
+                      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-white/15 bg-neutral-950 shadow-2xl transition-all duration-500 group-hover:border-white/30 group-hover:scale-[1.02]">
+                        {/* Browser Window Title Bar */}
+                        <div className="flex items-center justify-between border-b border-white/10 bg-neutral-900/90 px-3.5 py-2 text-[10px] font-mono text-neutral-400 backdrop-blur-md z-20">
+                          <div className="flex items-center gap-1.5">
+                            <span className="h-2 w-2 rounded-full bg-red-500/80" />
+                            <span className="h-2 w-2 rounded-full bg-yellow-500/80" />
+                            <span className="h-2 w-2 rounded-full bg-green-500/80" />
+                          </div>
+                          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-neutral-950/80 px-3 py-0.5 text-neutral-300">
+                            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                            <span className="truncate text-[10px]">
+                              {project.actions?.find((a) => a.url?.startsWith("http"))?.url.replace(/^https?:\/\//, "").replace(/\/$/, "") || `${project.id}.dev`}
+                            </span>
+                          </div>
+                          <div className="w-6" />
                         </div>
-                        <div className="relative flex h-full w-full items-center justify-center bg-neutral-950">
-                          {firstScreenshot ? (
+
+                        {/* Browser Viewport with Backdrop Screenshot and Middle Logo */}
+                        <div className="relative flex flex-1 w-full items-center justify-center overflow-hidden bg-neutral-950">
+                          {/* Real Website Screenshot Backdrop */}
+                          {firstScreenshot && (
                             <img
                               src={firstScreenshot}
                               alt={project.title}
-                              className="h-full w-full object-cover object-top"
+                              className="absolute inset-0 h-full w-full object-cover object-top opacity-30 filter brightness-90 transition-all duration-500 group-hover:opacity-45 group-hover:scale-105"
                             />
-                          ) : (
-                            <div className="p-4 text-center">
-                              <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-400 font-mono text-sm font-bold">
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/90 via-neutral-950/50 to-neutral-950/30 pointer-events-none" />
+
+                          {/* Center Middle Screen: Dedicated Logo & Title Cover */}
+                          <div className="relative z-10 flex flex-col items-center justify-center rounded-2xl border border-white/15 bg-neutral-900/85 px-6 py-4 text-center backdrop-blur-xl shadow-2xl transition-transform duration-500 group-hover:scale-105">
+                            {/* Ambient Glow */}
+                            <div className="absolute h-16 w-16 rounded-full bg-emerald-500/15 blur-xl pointer-events-none" />
+
+                            {/* Logo */}
+                            {project.logo ? (
+                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-neutral-800/90 shadow-md backdrop-blur-md transition-transform group-hover:scale-110 overflow-hidden p-1.5">
+                                <img
+                                  src={project.logo}
+                                  alt={`${project.title} logo`}
+                                  className="h-full w-full object-contain rounded-xl"
+                                />
+                              </div>
+                            ) : project.icon ? (
+                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-neutral-800/90 text-2xl shadow-md backdrop-blur-md transition-transform group-hover:scale-110">
+                                {project.icon}
+                              </div>
+                            ) : (
+                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-lg font-bold shadow-md">
                                 {project.title.charAt(0)}
                               </div>
-                              <span className="block font-mono text-sm text-neutral-300 font-semibold">
-                                {project.title}
-                              </span>
-                            </div>
-                          )}
+                            )}
+
+                            {/* Project Title */}
+                            <span className="relative font-mono text-xs font-bold text-white leading-tight mb-1">
+                              {project.title}
+                            </span>
+
+                            {/* Subtitle / Type Tag */}
+                            <span className="relative font-mono text-[9px] uppercase tracking-wider text-emerald-400/90 font-semibold">
+                              {project.type || "Web Platform"}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     )}

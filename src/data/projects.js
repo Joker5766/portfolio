@@ -4,10 +4,19 @@ import lazy1 from "../assets/lazynotes/1.jpg";
 import lazy2 from "../assets/lazynotes/2.jpg";
 import lazy3 from "../assets/lazynotes/3.jpg";
 import lazy4 from "../assets/lazynotes/4.jpg";
+import lazyLogo from "../assets/lazynotes/logo.webp";
 
 import go1 from "../assets/goconverter/1.jpeg";
 import go2 from "../assets/goconverter/2.jpeg";
 import go3 from "../assets/goconverter/3.jpeg";
+import goLogo from "../assets/goconverter/logo.webp";
+
+import istyleLogo from "../assets/istylear/logo.webp";
+import istyle1 from "../assets/istylear/1.webp";
+import istyle2 from "../assets/istylear/2.webp";
+import istyle3 from "../assets/istylear/3.webp";
+import istyle4 from "../assets/istylear/4.webp";
+import istyle5 from "../assets/istylear/5.webp";
 
 export const allProjects = [
   {
@@ -149,6 +158,7 @@ export const allProjects = [
     featured: true,
     year: "2025",
     icon: "📝",
+    logo: lazyLogo,
 
     overview:
       "LazyNotes is a productivity-focused Android application designed to manage notes and tasks efficiently with MVVM architecture, rich text formatting, Room database persistence, and exact-time system reminders.",
@@ -277,6 +287,7 @@ export const allProjects = [
     featured: false,
     year: "2025",
     icon: "💱",
+    logo: goLogo,
 
     overview:
       "GoConvert is a lightweight currency converter that supports 130+ countries and works offline after initial data fetch.",
@@ -332,6 +343,7 @@ export const allProjects = [
     featured: false,
     year: "2025",
     icon: "🥽",
+    logo: istyleLogo,
 
     overview:
       "IStyleAR is a web-based AR application that allows users to virtually try on clothes using real-time webcam pose estimation.",
@@ -359,7 +371,7 @@ export const allProjects = [
 
     media: {
       type: "web",
-      screenshots: [],
+      screenshots: [istyle1, istyle2, istyle3, istyle4, istyle5],
       video: null,
     },
 
@@ -367,7 +379,12 @@ export const allProjects = [
 
     actions: [
       {
-        label: "View Details",
+        label: "Live Demo",
+        type: "primary",
+        url: "https://istylear.netlify.app/",
+      },
+      {
+        label: "GitHub Repository",
         type: "secondary",
         url: "https://github.com/Joker5766",
       },
