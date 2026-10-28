@@ -25,9 +25,10 @@ export const allProjects = [
     shortTagline: "Meal Subscription Platform with 500+ Play Store downloads.",
     type: "Mobile Application",
     role: "React Native Developer",
-    status: "Play Store (500+ Downloads)",
+    status: "Under Development",
     featured: true,
-    disabled: true, // Temporarily disabled until screenshots/assets are added
+    underDevelopment: true,
+    isUnderDevelopment: true,
     year: "2026",
     icon: "🍱",
 
@@ -218,9 +219,10 @@ export const allProjects = [
     shortTagline: "AI-powered PDF document assistant & context chat.",
     type: "Android AI Application",
     role: "Solo Android Developer",
-    status: "Completed Prototype",
+    status: "Under Development",
     featured: false,
-    disabled: true, // Temporarily disabled until screenshots/assets are added
+    underDevelopment: true,
+    isUnderDevelopment: true,
     year: "2026",
     icon: "✨",
 

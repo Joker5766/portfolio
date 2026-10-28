@@ -67,6 +67,7 @@ const ProjectsPreview = () => {
             const isMobile = project.media?.type === "android";
             const firstScreenshot = project.media?.screenshots?.[0];
             const formattedNum = String(idx + 1).padStart(2, "0");
+            const isDev = project.underDevelopment || project.isUnderDevelopment;
 
             return (
               <motion.div
@@ -75,13 +76,16 @@ const ProjectsPreview = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="group relative flex flex-col justify-between rounded-3xl border border-white/[0.08] bg-neutral-900/40 p-8 transition-all duration-300 hover:border-white/30 hover:bg-neutral-900/80 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer"
+                className={`group relative flex flex-col justify-between rounded-3xl border p-8 transition-all duration-300 ${
+                  isDev
+                    ? "border-white/[0.08] bg-neutral-900/30 hover:border-amber-500/30"
+                    : "border-white/[0.08] bg-neutral-900/40 hover:border-white/30 hover:bg-neutral-900/80 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+                }`}
               >
-                <Link
-                  to={`/projects/${project.id}`}
+                <div
                   onClick={(e) => {
+                    if (isDev) return;
                     const rect = e.currentTarget.getBoundingClientRect();
-                    e.preventDefault();
                     navigate(`/projects/${project.id}`, {
                       state: {
                         background: location,
@@ -94,7 +98,7 @@ const ProjectsPreview = () => {
                       },
                     });
                   }}
-                  className="flex flex-col justify-between h-full w-full"
+                  className={`flex flex-col justify-between h-full w-full ${isDev ? "select-none" : "cursor-pointer"}`}
                 >
                   {/* Top Info Header */}
                   <div>
@@ -104,15 +108,24 @@ const ProjectsPreview = () => {
                         <span className="flex h-8 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 font-mono text-sm font-bold text-neutral-400 group-hover:text-neutral-200 transition-colors shadow-sm">
                           {formattedNum}
                         </span>
-                        <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors truncate">
+                        <h3 className={`text-xl font-bold tracking-tight truncate transition-colors ${
+                          isDev ? "text-neutral-200" : "text-white group-hover:text-emerald-400"
+                        }`}>
                           {project.title}
                         </h3>
                       </div>
 
                       {/* Right: Silent & Graceful Badge */}
-                      <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-mono text-neutral-400 group-hover:border-white/20 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">
-                        {isMobile ? "Mobile App" : "Web Platform"}
-                      </span>
+                      {isDev ? (
+                        <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-mono text-amber-400 uppercase tracking-wider font-medium shadow-sm">
+                          <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+                          Under Development
+                        </span>
+                      ) : (
+                        <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-mono text-neutral-400 group-hover:border-white/20 group-hover:text-neutral-300 transition-colors uppercase tracking-wider">
+                          {isMobile ? "Mobile App" : "Web Platform"}
+                        </span>
+                      )}
                     </div>
 
                     <p className="text-xs sm:text-sm leading-relaxed text-neutral-400 mb-6 line-clamp-2 font-light">
@@ -209,8 +222,10 @@ const ProjectsPreview = () => {
                             </span>
 
                             {/* Subtitle / Type Tag */}
-                            <span className="relative font-mono text-[9px] uppercase tracking-wider text-emerald-400/80 font-semibold">
-                              {project.type || "Mobile App"}
+                            <span className={`relative font-mono text-[9px] uppercase tracking-wider font-semibold ${
+                              isDev ? "text-amber-400/90" : "text-emerald-400/80"
+                            }`}>
+                              {isDev ? "Under Development" : (project.type || "Mobile App")}
                             </span>
                           </div>
                         </div>
@@ -276,8 +291,10 @@ const ProjectsPreview = () => {
                             </span>
 
                             {/* Subtitle / Type Tag */}
-                            <span className="relative font-mono text-[9px] uppercase tracking-wider text-emerald-400/90 font-semibold">
-                              {project.type || "Web Platform"}
+                            <span className={`relative font-mono text-[9px] uppercase tracking-wider font-semibold ${
+                              isDev ? "text-amber-400/90" : "text-emerald-400/90"
+                            }`}>
+                              {isDev ? "Under Development" : (project.type || "Web Platform")}
                             </span>
                           </div>
                         </div>
@@ -303,13 +320,20 @@ const ProjectsPreview = () => {
                         {project.status || project.role}
                       </span>
 
-                      <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 transition-transform group-hover:translate-x-1.5">
-                        <span>Explore Case Study</span>
-                        <span>→</span>
-                      </div>
+                      {isDev ? (
+                        <div className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400/80 select-none">
+                          <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                          <span>In Development</span>
+                        </div>
+                      ) : (
+                        <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400 transition-transform group-hover:translate-x-1.5">
+                          <span>Explore Case Study</span>
+                          <span>→</span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             );
           })}

@@ -25,7 +25,7 @@ const ProjectDetail = ({ isModal = false }) => {
   }, [id, isModal]);
 
   useEffect(() => {
-    if (!project || project?.isUnderDevelopment) {
+    if (!project || project?.isUnderDevelopment || project?.underDevelopment) {
       navigate("/", { replace: true });
     }
   }, [project, navigate]);
