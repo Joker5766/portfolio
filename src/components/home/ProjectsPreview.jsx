@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { projects } from "../../data/projects";
+import ProjectIcon from "../projects/ProjectIcon";
 
 const ProjectsPreview = () => {
   const [filter, setFilter] = useState("all");
@@ -206,13 +207,9 @@ const ProjectsPreview = () => {
                                   className="h-full w-full object-contain rounded-xl"
                                 />
                               </div>
-                            ) : project.icon ? (
-                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-neutral-800/90 text-2xl shadow-md backdrop-blur-md transition-transform group-hover:scale-110">
-                                {project.icon}
-                              </div>
                             ) : (
-                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-lg font-bold shadow-md">
-                                {project.title.charAt(0)}
+                              <div className="mb-2 transition-transform group-hover:scale-110">
+                                <ProjectIcon projectId={project.id} title={project.title} size="xl" />
                               </div>
                             )}
 
@@ -275,13 +272,9 @@ const ProjectsPreview = () => {
                                   className="h-full w-full object-contain rounded-xl"
                                 />
                               </div>
-                            ) : project.icon ? (
-                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-neutral-800/90 text-2xl shadow-md backdrop-blur-md transition-transform group-hover:scale-110">
-                                {project.icon}
-                              </div>
                             ) : (
-                              <div className="relative mb-2 flex h-11 w-11 items-center justify-center rounded-2xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-lg font-bold shadow-md">
-                                {project.title.charAt(0)}
+                              <div className="mb-2 transition-transform group-hover:scale-110">
+                                <ProjectIcon projectId={project.id} title={project.title} size="xl" />
                               </div>
                             )}
 

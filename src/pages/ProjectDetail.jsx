@@ -3,6 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowLeft, FiGithub, FiExternalLink, FiCheckCircle } from "react-icons/fi";
 import { FaGooglePlay } from "react-icons/fa";
+import ProjectIcon from "../components/projects/ProjectIcon";
 
 import PageWrapper from "../components/layout/PageWrapper";
 import AndroidShowcase from "../components/projects/AndroidShowcase";
@@ -116,9 +117,9 @@ const ProjectDetail = ({ isModal = false }) => {
             <div className="flex items-center gap-2 font-mono text-xs text-neutral-300">
               {project.logo ? (
                 <img src={project.logo} alt="" className="h-4 w-4 object-contain rounded-sm" />
-              ) : project.icon ? (
-                <span className="text-base">{project.icon}</span>
-              ) : null}
+              ) : (
+                <ProjectIcon projectId={project.id} title={project.title} size="sm" />
+              )}
               <span className="font-semibold text-white tracking-wide">{project.title}</span>
             </div>
 
@@ -154,11 +155,9 @@ const ProjectDetail = ({ isModal = false }) => {
                       <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-neutral-800/90 p-1.5 shadow-md backdrop-blur-md overflow-hidden">
                         <img src={project.logo} alt="" className="h-full w-full object-contain rounded-xl" />
                       </div>
-                    ) : project.icon ? (
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl shadow-md backdrop-blur-md">
-                        {project.icon}
-                      </div>
-                    ) : null}
+                    ) : (
+                      <ProjectIcon projectId={project.id} title={project.title} size="lg" />
+                    )}
                     <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
                       {project.title}
                     </h1>
@@ -309,11 +308,9 @@ const ProjectDetail = ({ isModal = false }) => {
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/15 bg-neutral-800/90 p-1.5 shadow-md backdrop-blur-md overflow-hidden">
                     <img src={project.logo} alt="" className="h-full w-full object-contain rounded-xl" />
                   </div>
-                ) : project.icon ? (
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl shadow-md backdrop-blur-md">
-                    {project.icon}
-                  </div>
-                ) : null}
+                ) : (
+                  <ProjectIcon projectId={project.id} title={project.title} size="lg" />
+                )}
                 <h1 className="text-3xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
                   {project.title}
                 </h1>

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiExternalLink, FiGithub, FiCheckCircle } from "react-icons/fi";
 import { FaGooglePlay } from "react-icons/fa";
 import AndroidShowcase from "./AndroidShowcase";
+import ProjectIcon from "./ProjectIcon";
 
 const ProjectModal = ({ project, onClose }) => {
   useEffect(() => {
@@ -59,9 +60,9 @@ const ProjectModal = ({ project, onClose }) => {
             <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
               {project.logo ? (
                 <img src={project.logo} alt="" className="h-4 w-4 object-contain rounded-sm" />
-              ) : project.icon ? (
-                <span>{project.icon}</span>
-              ) : null}
+              ) : (
+                <ProjectIcon projectId={project.id} title={project.title} size="sm" />
+              )}
               <span className="font-semibold text-white">{project.title}</span>
               <span>— Case Study</span>
             </div>

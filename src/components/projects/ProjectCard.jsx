@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ProjectIcon from "./ProjectIcon";
 
 const ProjectCard = ({ project, index }) => {
   const isMobile = project.media?.type === "android";
@@ -27,11 +28,11 @@ const ProjectCard = ({ project, index }) => {
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-neutral-800/90 shadow-md backdrop-blur-md transition-transform group-hover:scale-105 overflow-hidden p-1">
                 <img src={project.logo} alt="" className="h-full w-full object-contain rounded-lg" />
               </div>
-            ) : project.icon ? (
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-base shadow-sm backdrop-blur-md transition-transform group-hover:scale-105">
-                {project.icon}
+            ) : (
+              <div className="transition-transform group-hover:scale-105">
+                <ProjectIcon projectId={project.id} title={project.title} size="md" />
               </div>
-            ) : null}
+            )}
             <h3 className="text-xl font-bold tracking-tight text-white group-hover:text-emerald-400 transition-colors truncate">
               {project.title}
             </h3>
